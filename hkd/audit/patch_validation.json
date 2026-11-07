@@ -1,0 +1,224 @@
+{
+  "timestamp": "2026-11-07T13:43:49.536452+00:00",
+  "upstream_commit": "57a808a3920f05f2d4b9eab2d0493e1df136ae6b",
+  "implementation_commit": "985f9b85598665ae3f3b2048bb62264e0d50c5d5",
+  "patch_sha256": "cf695162a2abab1ae9e99edc1cf813aba4311b409392c014163ecd5f2fef408f",
+  "patch_tool_version": "patch 2.0-12u11-Apple",
+  "files_compared": 32,
+  "files": [
+    {
+      "path": "README_hkd.md",
+      "sha256": "e7a354cea67eb17e28d8ee6b018007d3d662c19b6b065e982e08113da793770e",
+      "bytes_equal": true
+    },
+    {
+      "path": "codex-rs/skills/src/hkd_length_bound.rs",
+      "sha256": "68d73e5922af99940e45cc5d9dc16697838c5f2dddf85deac035bf6a4e20ce03",
+      "bytes_equal": true
+    },
+    {
+      "path": "codex-rs/skills/src/interface.rs",
+      "sha256": "ee6d42595814fd9c19408b249c365b8f51046306297fc33cae935c9b2542db39",
+      "bytes_equal": true
+    },
+    {
+      "path": "codex-rs/skills/src/lib.rs",
+      "sha256": "d177cda8e98029d2fb5928f6d050601c7de51fc6e1fd1fa13b63e93dc1ebc38e",
+      "bytes_equal": true
+    },
+    {
+      "path": "codex-rs/skills/src/metadata.rs",
+      "sha256": "388281659ebe31176a6f2e951b34c07d8dbeb8c40b0e0ab16e040fe6b0984872",
+      "bytes_equal": true
+    },
+    {
+      "path": "codex-rs/skills/src/parser.rs",
+      "sha256": "a470e096f91f6f0edd73c3bec952d0b679c5bec7b5354e2061cecb2f369ca95c",
+      "bytes_equal": true
+    },
+    {
+      "path": "hkd/.gitignore",
+      "sha256": "d7030f4b6c8dde6a2df3e97c362b9843f03bd889dcbe865e54e47309f9cf474d",
+      "bytes_equal": true
+    },
+    {
+      "path": "hkd/alu_measurement_summary.json",
+      "sha256": "37e5534183209d4ae6839b72def9806ca8092c2b41b748560cfeb674007da08e",
+      "bytes_equal": true
+    },
+    {
+      "path": "hkd/block_registry.json",
+      "sha256": "fe2b75f6d44f3ce714b471b5bee4dca6dc60a456a6fa3eb606415b81127342be",
+      "bytes_equal": true
+    },
+    {
+      "path": "hkd/doctest_results.json",
+      "sha256": "921e98dfa966b7603926a05803a0d6d2f780379ab5442604009fa09070f58a13",
+      "bytes_equal": true
+    },
+    {
+      "path": "hkd/length_benchmark.csv",
+      "sha256": "30efe3055dff1f1ded3cfbeb52c759f7fe9e4784a2532ae8b4feef50bd108055",
+      "bytes_equal": true
+    },
+    {
+      "path": "hkd/length_benchmark.rs",
+      "sha256": "865d9042bc654263d5a32d2fedab0120cf25ce355a8788bc6b0df23a9ed37ed2",
+      "bytes_equal": true
+    },
+    {
+      "path": "hkd/length_benchmark_rejected_candidate.csv",
+      "sha256": "06d229f2ea546a0d5e122c95622fb1a931ec1df818fc2c04bd61cee857461f60",
+      "bytes_equal": true
+    },
+    {
+      "path": "hkd/obfuscation_receipt.json",
+      "sha256": "b12130549341e46b0b47e59185caf7fa500b52290f0abcf618607e8eced70fd1",
+      "bytes_equal": true
+    },
+    {
+      "path": "hkd/personal_reliability/README.md",
+      "sha256": "3931213b7a0a8d8c95574345d4b891d93f03ae747bdd035885da31c858b1e423",
+      "bytes_equal": true
+    },
+    {
+      "path": "hkd/personal_reliability/check.py",
+      "sha256": "e38714e6d8cbf729759b215834e924fcfbea456328189ed5bcdbb0df27b958a8",
+      "bytes_equal": true
+    },
+    {
+      "path": "hkd/personal_reliability/hkd_runtime.py",
+      "sha256": "915b1223e8e9319e13abbf1f98211a2490f124bab96dac0062573a62015a4e6c",
+      "bytes_equal": true
+    },
+    {
+      "path": "hkd/personal_reliability/paid_runtime_smoke_result.json",
+      "sha256": "c11f62b05f95ad1a04e135f1fc7bed23b95d96067cc2076e54660ee4673377c2",
+      "bytes_equal": true
+    },
+    {
+      "path": "hkd/personal_reliability/smoke_evidence.txt",
+      "sha256": "e5951644d0daace2b750208523bbdec513476be66013a4d6b4fb593d208f659b",
+      "bytes_equal": true
+    },
+    {
+      "path": "hkd/personal_reliability/smoke_result.json",
+      "sha256": "81e52e106e7e42912a334dbb4b1e8745b9b716ec3117937a9ca596648f524c85",
+      "bytes_equal": true
+    },
+    {
+      "path": "hkd/personal_reliability/smoke_supported.txt",
+      "sha256": "91b3fad3fa5867a5160e2b7ed697761fcb4f2690f2735d0a7b5f2c5589e2947b",
+      "bytes_equal": true
+    },
+    {
+      "path": "hkd/personal_reliability/smoke_supported_result.json",
+      "sha256": "06fc6c6eb65fb4c84c0381ea9edd2ef1ede5322e623474366276f0ac2713b59f",
+      "bytes_equal": true
+    },
+    {
+      "path": "hkd/personal_reliability/smoke_text.txt",
+      "sha256": "d43eadedf69e3e0f9b9a7509a5aba61f8ba4da94bc707e7e074c3b7e83df297b",
+      "bytes_equal": true
+    },
+    {
+      "path": "hkd/personal_reliability/test_check.py",
+      "sha256": "849cf2968070f61abb5253550a56d13f5a9a9a641174f094ff9d32c9e546c17b",
+      "bytes_equal": true
+    },
+    {
+      "path": "hkd/python311_validation.json",
+      "sha256": "d04eb72907ce1dd8b223ee4d7cc48acf3a74b2ca6e02d7cb5dd5d9420b5cc6df",
+      "bytes_equal": true
+    },
+    {
+      "path": "hkd/python343_obfuscation_validation.json",
+      "sha256": "84c7ce0a93c6b5daa44b9b4042dcc2a59e96ad2835c51ef820e2a6bafa696068",
+      "bytes_equal": true
+    },
+    {
+      "path": "hkd/reliability_benchmark.json",
+      "sha256": "af4edf43866b99dfe8496e635e17b813eac9c6e1300e5731bf4e7e55bd01e75f",
+      "bytes_equal": true
+    },
+    {
+      "path": "hkd/reliability_benchmark.py",
+      "sha256": "797b2655d3ae2fc7c5ec347a9111c2650321b13e6e0fa978249c0059d96c3216",
+      "bytes_equal": true
+    },
+    {
+      "path": "hkd/source_manifest.json",
+      "sha256": "b1be1c29d12004108147b8bfe0e37a0efee49143409beaa70c6acb2ac4b43b77",
+      "bytes_equal": true
+    },
+    {
+      "path": "hkd/vendor/NOTICE.md",
+      "sha256": "71feb753bca75d2afb1e5b759c09b362bc4d0d705685d405125159d15f67b9d1",
+      "bytes_equal": true
+    },
+    {
+      "path": "hkd/vendor/hkd_alu.py",
+      "sha256": "6ec9c1ed9f3f4552f0e23455713d714950673837392c4c5b7afdbc4555fe8f37",
+      "bytes_equal": true
+    },
+    {
+      "path": "hkd/vendor/hkd_thread_paid.py",
+      "sha256": "4469e333e49b0a3c22ed452897cd25559651fc66e8d9a9fbbabe39037e99138f",
+      "bytes_equal": true
+    }
+  ],
+  "commands": [
+    {
+      "command": "patch --dry-run --batch -p1 --input complete_hkd.patch",
+      "exit_code": 0,
+      "stdout": "patching file README_hkd.md\npatching file 'codex-rs/skills/src/hkd_length_bound.rs'\npatching file 'codex-rs/skills/src/interface.rs'\npatching file 'codex-rs/skills/src/lib.rs'\npatching file 'codex-rs/skills/src/metadata.rs'\npatching file 'codex-rs/skills/src/parser.rs'\npatching file 'hkd/.gitignore'\npatching file 'hkd/alu_measurement_summary.json'\npatching file 'hkd/block_registry.json'\npatching file 'hkd/doctest_results.json'\npatching file 'hkd/length_benchmark.csv'\npatching file 'hkd/length_benchmark.rs'\npatching file 'hkd/length_benchmark_rejected_candidate.csv'\npatching file 'hkd/obfuscation_receipt.json'\npatching file 'hkd/personal_reliability/README.md'\npatching file 'hkd/personal_reliability/check.py'\npatching file 'hkd/personal_reliability/hkd_runtime.py'\npatching file 'hkd/personal_reliability/paid_runtime_smoke_result.json'\npatching file 'hkd/personal_reliability/smoke_evidence.txt'\npatching file 'hkd/personal_reliability/smoke_result.json'\npatching file 'hkd/personal_reliability/smoke_supported.txt'\npatching file 'hkd/personal_reliability/smoke_supported_result.json'\npatching file 'hkd/personal_reliability/smoke_text.txt'\npatching file 'hkd/personal_reliability/test_check.py'\npatching file 'hkd/python311_validation.json'\npatching file 'hkd/python343_obfuscation_validation.json'\npatching file 'hkd/reliability_benchmark.json'\npatching file 'hkd/reliability_benchmark.py'\npatching file 'hkd/source_manifest.json'\npatching file 'hkd/vendor/NOTICE.md'\npatching file 'hkd/vendor/hkd_alu.py'\npatching file 'hkd/vendor/hkd_thread_paid.py'\n",
+      "stderr": ""
+    },
+    {
+      "command": "patch --batch -p1 --input complete_hkd.patch",
+      "exit_code": 0,
+      "stdout": "patching file README_hkd.md\npatching file 'codex-rs/skills/src/hkd_length_bound.rs'\npatching file 'codex-rs/skills/src/interface.rs'\npatching file 'codex-rs/skills/src/lib.rs'\npatching file 'codex-rs/skills/src/metadata.rs'\npatching file 'codex-rs/skills/src/parser.rs'\npatching file 'hkd/.gitignore'\npatching file 'hkd/alu_measurement_summary.json'\npatching file 'hkd/block_registry.json'\npatching file 'hkd/doctest_results.json'\npatching file 'hkd/length_benchmark.csv'\npatching file 'hkd/length_benchmark.rs'\npatching file 'hkd/length_benchmark_rejected_candidate.csv'\npatching file 'hkd/obfuscation_receipt.json'\npatching file 'hkd/personal_reliability/README.md'\npatching file 'hkd/personal_reliability/check.py'\npatching file 'hkd/personal_reliability/hkd_runtime.py'\npatching file 'hkd/personal_reliability/paid_runtime_smoke_result.json'\npatching file 'hkd/personal_reliability/smoke_evidence.txt'\npatching file 'hkd/personal_reliability/smoke_result.json'\npatching file 'hkd/personal_reliability/smoke_supported.txt'\npatching file 'hkd/personal_reliability/smoke_supported_result.json'\npatching file 'hkd/personal_reliability/smoke_text.txt'\npatching file 'hkd/personal_reliability/test_check.py'\npatching file 'hkd/python311_validation.json'\npatching file 'hkd/python343_obfuscation_validation.json'\npatching file 'hkd/reliability_benchmark.json'\npatching file 'hkd/reliability_benchmark.py'\npatching file 'hkd/source_manifest.json'\npatching file 'hkd/vendor/NOTICE.md'\npatching file 'hkd/vendor/hkd_alu.py'\npatching file 'hkd/vendor/hkd_thread_paid.py'\n",
+      "stderr": ""
+    },
+    {
+      "command": "python3.11 -m unittest discover -s hkd/personal_reliability -v",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "test_changed_source_invalidates_quote (test_check.IntegrityTests.test_changed_source_invalidates_quote) ... ok\ntest_clean_is_not_verified (test_check.IntegrityTests.test_clean_is_not_verified) ... ok\ntest_empty_quote (test_check.IntegrityTests.test_empty_quote) ... ok\ntest_extra_rewrite_field (test_check.IntegrityTests.test_extra_rewrite_field) ... ok\ntest_invented_claim (test_check.IntegrityTests.test_invented_claim) ... ok\ntest_invented_quote (test_check.IntegrityTests.test_invented_quote) ... ok\ntest_invented_source (test_check.IntegrityTests.test_invented_source) ... ok\ntest_multiple_edits_preserve_offsets (test_check.IntegrityTests.test_multiple_edits_preserve_offsets) ... ok\ntest_overlap (test_check.IntegrityTests.test_overlap) ... ok\ntest_preserves_original (test_check.IntegrityTests.test_preserves_original) ... ok\ntest_repeated_span (test_check.IntegrityTests.test_repeated_span) ... ok\ntest_unknown_has_no_fake_citation (test_check.IntegrityTests.test_unknown_has_no_fake_citation) ... ok\ntest_unknown_label (test_check.IntegrityTests.test_unknown_label) ... ok\ntest_unknown_verdict (test_check.IntegrityTests.test_unknown_verdict) ... ok\ntest_alu_reporting_contract (test_check.PaidRuntimeTests.test_alu_reporting_contract) ... ok\ntest_input_count_is_bounded (test_check.PaidRuntimeTests.test_input_count_is_bounded) ... ok\ntest_missing_source_fails (test_check.PaidRuntimeTests.test_missing_source_fails) ... ok\ntest_paid_edition (test_check.PaidRuntimeTests.test_paid_edition) ... ok\ntest_source_order_and_updates (test_check.PaidRuntimeTests.test_source_order_and_updates) ... ok\ntest_cli_invalid_does_not_release_text (test_check.StreamTests.test_cli_invalid_does_not_release_text) ... ok\ntest_cli_valid_offline_review (test_check.StreamTests.test_cli_valid_offline_review) ... ok\ntest_completion_without_start (test_check.StreamTests.test_completion_without_start) ... ok\ntest_error_after_message (test_check.StreamTests.test_error_after_message) ... ok\ntest_extra_turn (test_check.StreamTests.test_extra_turn) ... ok\ntest_failed (test_check.StreamTests.test_failed) ... ok\ntest_final_only (test_check.StreamTests.test_final_only) ... ok\ntest_invalid_json (test_check.StreamTests.test_invalid_json) ... ok\ntest_missing_message (test_check.StreamTests.test_missing_message) ... ok\ntest_truncated (test_check.StreamTests.test_truncated) ... ok\n\n----------------------------------------------------------------------\nRan 29 tests in 0.194s\n\nOK\n"
+    },
+    {
+      "command": "python3.11 hkd/personal_reliability/check.py --self-test",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": "python3.11 -m doctest hkd/personal_reliability/hkd_runtime.py hkd/vendor/hkd_alu.py",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": "rustc --edition=2024 --test codex-rs/skills/src/hkd_length_bound.rs -o /private/tmp/hkd-patched-rust-tests",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": "/private/tmp/hkd-patched-rust-tests",
+      "exit_code": 0,
+      "stdout": "\nrunning 3 tests\ntest tests::boundaries_match_reference ... ok\ntest tests::large_inputs_match_reference ... ok\ntest tests::generated_unicode_matches_reference ... ok\n\ntest result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n",
+      "stderr": ""
+    }
+  ],
+  "result": "PASS",
+  "scope": "Complete implementation diff; audit packaging files are added in a subsequent commit and excluded to avoid self-reference.",
+  "benchmark_case_summary": {
+    "case_count": 11,
+    "median_of_case_speedup_ratios": 3.7382,
+    "worst_observed_case_ratio": 0.9325,
+    "worst_observed_slowdown_percent": 7.238605898123329,
+    "largest_stress_case_ratio": 600190.4997,
+    "scope": "unweighted median over fixed local-predicate cases, not representative whole-application throughput"
+  }
+}
