@@ -1,0 +1,173 @@
+{
+  "scope": "HKD Python reviewer allocation stress and actual JSONL session; not whole Codex or ChatGPT",
+  "local": {
+    "fixture_reviewer": true,
+    "requests": 22000,
+    "warmup_requests": 2000,
+    "samples": [
+      {
+        "requests": 2000,
+        "python_retained_bytes": 263094,
+        "python_peak_bytes": 458834,
+        "rss_bytes": 27164672,
+        "entries": 8,
+        "serialized_cache_bytes": 261144,
+        "threads": 1
+      },
+      {
+        "requests": 4000,
+        "python_retained_bytes": 264069,
+        "python_peak_bytes": 464481,
+        "rss_bytes": 27574272,
+        "entries": 8,
+        "serialized_cache_bytes": 261144,
+        "threads": 1
+      },
+      {
+        "requests": 6000,
+        "python_retained_bytes": 264501,
+        "python_peak_bytes": 464913,
+        "rss_bytes": 27574272,
+        "entries": 8,
+        "serialized_cache_bytes": 261144,
+        "threads": 1
+      },
+      {
+        "requests": 8000,
+        "python_retained_bytes": 264933,
+        "python_peak_bytes": 465345,
+        "rss_bytes": 27574272,
+        "entries": 8,
+        "serialized_cache_bytes": 261144,
+        "threads": 1
+      },
+      {
+        "requests": 10000,
+        "python_retained_bytes": 265365,
+        "python_peak_bytes": 465777,
+        "rss_bytes": 25083904,
+        "entries": 8,
+        "serialized_cache_bytes": 261144,
+        "threads": 1
+      },
+      {
+        "requests": 12000,
+        "python_retained_bytes": 265837,
+        "python_peak_bytes": 466252,
+        "rss_bytes": 24068096,
+        "entries": 8,
+        "serialized_cache_bytes": 261152,
+        "threads": 1
+      },
+      {
+        "requests": 14000,
+        "python_retained_bytes": 266269,
+        "python_peak_bytes": 466684,
+        "rss_bytes": 24068096,
+        "entries": 8,
+        "serialized_cache_bytes": 261152,
+        "threads": 1
+      },
+      {
+        "requests": 16000,
+        "python_retained_bytes": 266701,
+        "python_peak_bytes": 467116,
+        "rss_bytes": 24084480,
+        "entries": 8,
+        "serialized_cache_bytes": 261152,
+        "threads": 1
+      },
+      {
+        "requests": 18000,
+        "python_retained_bytes": 267133,
+        "python_peak_bytes": 467548,
+        "rss_bytes": 24051712,
+        "entries": 8,
+        "serialized_cache_bytes": 261152,
+        "threads": 1
+      },
+      {
+        "requests": 20000,
+        "python_retained_bytes": 267629,
+        "python_peak_bytes": 468044,
+        "rss_bytes": 24117248,
+        "entries": 8,
+        "serialized_cache_bytes": 261152,
+        "threads": 1
+      },
+      {
+        "requests": 22000,
+        "python_retained_bytes": 268061,
+        "python_peak_bytes": 468476,
+        "rss_bytes": 24543232,
+        "entries": 8,
+        "serialized_cache_bytes": 261152,
+        "threads": 1
+      }
+    ],
+    "python_bytes_after_clear": 5653,
+    "post_warmup_retained_delta_bytes": 4967,
+    "note": "Sample records also consume a small bounded amount of retained Python memory."
+  },
+  "cli": {
+    "live_model_calls": 1,
+    "saved_requests": 10000,
+    "fresh_seconds": 9.161206124990713,
+    "saved_mean_seconds": 0.00012470032758719754,
+    "saved_median_seconds": 0.00011570799688342959,
+    "saved_p95_seconds": 0.00016520799545105547,
+    "saved_max_seconds": 0.0013746250042458996,
+    "samples": [
+      {
+        "saved_requests": 1000,
+        "child_rss_bytes": 16793600
+      },
+      {
+        "saved_requests": 2000,
+        "child_rss_bytes": 16891904
+      },
+      {
+        "saved_requests": 3000,
+        "child_rss_bytes": 16908288
+      },
+      {
+        "saved_requests": 4000,
+        "child_rss_bytes": 16973824
+      },
+      {
+        "saved_requests": 5000,
+        "child_rss_bytes": 16973824
+      },
+      {
+        "saved_requests": 6000,
+        "child_rss_bytes": 16973824
+      },
+      {
+        "saved_requests": 7000,
+        "child_rss_bytes": 16973824
+      },
+      {
+        "saved_requests": 8000,
+        "child_rss_bytes": 16973824
+      },
+      {
+        "saved_requests": 9000,
+        "child_rss_bytes": 17530880
+      },
+      {
+        "saved_requests": 10000,
+        "child_rss_bytes": 17694720
+      }
+    ],
+    "child_rss_delta_bytes": 901120,
+    "content_equal": true,
+    "clean_child_exit": true
+  },
+  "elapsed_seconds": 19.15627150000364,
+  "source_sha256": {
+    "personal_reliability/check.py": "0fb02b6a032686f2bdac256759f9a9fa5d9b10494fa379a44a8531ecbf9d25a2",
+    "personal_reliability/reuse.py": "baa3b22c83fb100d19981d94b66b1d3fc2ed33d069bebe35d6c158c722b50672",
+    "memory_stress.py": "91c273b2cf6d81e5e3f44f88faf9d75a109da08858c77bff42e8d914b455567e"
+  },
+  "limits": "Finite tests cannot prove absence of all leaks. RSS includes allocator/runtime memory. No model-context compaction setting changed. No iTerm2-equivalence claim."
+}

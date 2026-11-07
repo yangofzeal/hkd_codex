@@ -1,0 +1,123 @@
+{
+  "fixture_reviewer": true,
+  "requests": 22000,
+  "warmup_requests": 2000,
+  "samples": [
+    {
+      "requests": 2000,
+      "python_retained_bytes": 263094,
+      "python_peak_bytes": 460154,
+      "rss_bytes": 27328512,
+      "hkd_module_retained_bytes": 262784,
+      "entries": 8,
+      "serialized_cache_bytes": 261144,
+      "threads": 1
+    },
+    {
+      "requests": 4000,
+      "python_retained_bytes": 268361,
+      "python_peak_bytes": 472597,
+      "rss_bytes": 27328512,
+      "hkd_module_retained_bytes": 262784,
+      "entries": 8,
+      "serialized_cache_bytes": 261144,
+      "threads": 1
+    },
+    {
+      "requests": 6000,
+      "python_retained_bytes": 268758,
+      "python_peak_bytes": 472597,
+      "rss_bytes": 27344896,
+      "hkd_module_retained_bytes": 262784,
+      "entries": 8,
+      "serialized_cache_bytes": 261144,
+      "threads": 1
+    },
+    {
+      "requests": 8000,
+      "python_retained_bytes": 269218,
+      "python_peak_bytes": 472597,
+      "rss_bytes": 27344896,
+      "hkd_module_retained_bytes": 262784,
+      "entries": 8,
+      "serialized_cache_bytes": 261144,
+      "threads": 1
+    },
+    {
+      "requests": 10000,
+      "python_retained_bytes": 269678,
+      "python_peak_bytes": 472597,
+      "rss_bytes": 27377664,
+      "hkd_module_retained_bytes": 262784,
+      "entries": 8,
+      "serialized_cache_bytes": 261144,
+      "threads": 1
+    },
+    {
+      "requests": 12000,
+      "python_retained_bytes": 270178,
+      "python_peak_bytes": 472597,
+      "rss_bytes": 27377664,
+      "hkd_module_retained_bytes": 262792,
+      "entries": 8,
+      "serialized_cache_bytes": 261152,
+      "threads": 1
+    },
+    {
+      "requests": 14000,
+      "python_retained_bytes": 270638,
+      "python_peak_bytes": 472597,
+      "rss_bytes": 27377664,
+      "hkd_module_retained_bytes": 262792,
+      "entries": 8,
+      "serialized_cache_bytes": 261152,
+      "threads": 1
+    },
+    {
+      "requests": 16000,
+      "python_retained_bytes": 271098,
+      "python_peak_bytes": 472597,
+      "rss_bytes": 27377664,
+      "hkd_module_retained_bytes": 262792,
+      "entries": 8,
+      "serialized_cache_bytes": 261152,
+      "threads": 1
+    },
+    {
+      "requests": 18000,
+      "python_retained_bytes": 271558,
+      "python_peak_bytes": 472597,
+      "rss_bytes": 27394048,
+      "hkd_module_retained_bytes": 262792,
+      "entries": 8,
+      "serialized_cache_bytes": 261152,
+      "threads": 1
+    },
+    {
+      "requests": 20000,
+      "python_retained_bytes": 272082,
+      "python_peak_bytes": 472597,
+      "rss_bytes": 24477696,
+      "hkd_module_retained_bytes": 262792,
+      "entries": 8,
+      "serialized_cache_bytes": 261152,
+      "threads": 1
+    },
+    {
+      "requests": 22000,
+      "python_retained_bytes": 272542,
+      "python_peak_bytes": 472597,
+      "rss_bytes": 24625152,
+      "hkd_module_retained_bytes": 262792,
+      "entries": 8,
+      "serialized_cache_bytes": 261152,
+      "threads": 1
+    }
+  ],
+  "python_bytes_after_clear": 10162,
+  "post_warmup_retained_delta_bytes": 9448,
+  "note": "Sample records also consume a small bounded amount of retained Python memory.",
+  "scope": "Corrected local allocation profile; does not rerun or replace the separate live CLI stress measurements.",
+  "observer_fix": "Sample records copy the cache accounting integer, so old counter allocations are not retained by the measurement itself.",
+  "script_sha256": "a14a0ce2a6eb5a87f7c3ff92240827dfe894f2e0855e07206e95e2a6744ff4ac"
+}

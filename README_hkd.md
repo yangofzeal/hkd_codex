@@ -1,5 +1,26 @@
 # HKD Codex: personal reliability checking and exact local optimization
 
+## Latest integrity, diff and memory audit
+
+See [the completed results table](hkd/RESULTS_20261107.md),
+[source-bound measurements](hkd/final_audit.json), and
+[PFT proof/counterexample audit](hkd/PFT_EXACTNESS_AUDIT.md).
+Separate commits fix overlapping claim spans, identical contradiction quotes,
+and digest-only review identity. The actual public-tip context matcher is about
+1.97x faster on the tested Unicode-fuzzy workloads and 1.92x on absent contexts,
+with matching outputs in 24,000 generated comparisons. These are local matcher
+improvements, not inference speedups or a claim of greater semantic exactness.
+
+The actual CLI completed 100,000 saved-review requests at 0.193 ms mean,
+0.313 ms p95 and 16.201 ms maximum. One fresh call took 8.422 seconds.
+Sampled CLI RSS ranged from 16.20 to 20.71 MB and ended at 16.20 MB. Corrected
+allocation profiling found 262,784–262,792 retained bytes in HKD modules across
+22,000 distinct-input fixture requests; the 8-byte step corresponds to longer
+input IDs. These are finite measurements, not a whole-Codex memory guarantee.
+All 45 Python tests pass. No installed binary or compaction setting was changed.
+Universal hallucination elimination, hardware-cycle superiority and 1-microsecond
+complete prompt-response latency remain unestablished.
+
 ## November 7 follow-up: measured ARM validation and saved-review reuse
 
 The historical v1 measurements below remain unchanged. The follow-up adds:

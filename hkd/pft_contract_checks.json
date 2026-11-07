@@ -1,0 +1,16 @@
+{
+  "small_prime_pairs_checked": 5778,
+  "fixed_gap_groups": 297,
+  "paper_example_counts_to_given_pair": [
+    298323,
+    1
+  ],
+  "magnitude_only_counterexample": {
+    "143": 1,
+    "1338943": 11
+  },
+  "hardware_cycles_measured": false,
+  "universal_hallucination_theorem": false,
+  "source_sha256": "cfe7e13f06bc73ff419416d33037124518ecff05b9d39e471dfdd01ef0249d37",
+  "scope": "Exact integer count identities and finite fixed-gap checks. No live factoring performance or semantic correctness claim."
+}
