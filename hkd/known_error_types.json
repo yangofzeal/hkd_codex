@@ -1,0 +1,154 @@
+{
+  "version": 1,
+  "scope": "Only registered deterministic error contracts in hkd/personal_reliability; source-pairing assumptions remain explicit.",
+  "new_category_policy": "A newly reproduced defect must be added with stable ID, precise scope, failing regression and status open; switch to enforced only after repair. Open, missing, skipped, expected-failure or failing checks fail the monitor. Do not automatically infer novel semantic types from model text.",
+  "categories": [
+    {
+      "id": "unique_claim_span",
+      "scope": "A nonempty claim must have exactly one occurrence, including overlaps.",
+      "status": "enforced",
+      "tests": [
+        "test_corner_cases.SpanCornerCases",
+        "test_check.IntegrityTests.test_repeated_span",
+        "test_check.IntegrityTests.test_invented_claim"
+      ]
+    },
+    {
+      "id": "citation_provenance",
+      "scope": "Contradiction citations must reference an existing source and a nonempty exact quote.",
+      "status": "enforced",
+      "tests": [
+        "test_check.IntegrityTests.test_invented_quote",
+        "test_check.IntegrityTests.test_invented_source",
+        "test_check.IntegrityTests.test_empty_quote",
+        "test_check.IntegrityTests.test_changed_source_invalidates_quote"
+      ]
+    },
+    {
+      "id": "identical_contradiction_quote",
+      "scope": "A stripped quote identical to the claim cannot alone establish contradiction.",
+      "status": "enforced",
+      "tests": [
+        "test_corner_cases.SemanticBoundaryCases.test_identical_quote_does_not_prove_contradiction"
+      ]
+    },
+    {
+      "id": "edit_integrity",
+      "scope": "Overlapping annotations are rejected and original content/offsets preserved.",
+      "status": "enforced",
+      "tests": [
+        "test_check.IntegrityTests.test_overlap",
+        "test_check.IntegrityTests.test_preserves_original",
+        "test_check.IntegrityTests.test_multiple_edits_preserve_offsets"
+      ]
+    },
+    {
+      "id": "review_schema",
+      "scope": "Unsupported verdicts/rewrites and citations on unverified findings are rejected.",
+      "status": "enforced",
+      "tests": [
+        "test_check.IntegrityTests.test_unknown_has_no_fake_citation",
+        "test_check.IntegrityTests.test_unknown_verdict",
+        "test_check.IntegrityTests.test_extra_rewrite_field",
+        "test_check.IntegrityTests.test_unknown_label"
+      ]
+    },
+    {
+      "id": "false_truth_certification",
+      "scope": "No-findings output and model judgments never certify overall truth/completeness.",
+      "status": "enforced",
+      "tests": [
+        "test_check.IntegrityTests.test_clean_is_not_verified",
+        "test_corner_cases.SemanticBoundaryCases.test_empty_findings_never_certify_truth_or_coverage",
+        "test_corner_cases.SemanticBoundaryCases.test_genuine_contradiction_retains_model_assessment_boundary"
+      ]
+    },
+    {
+      "id": "incomplete_or_wrong_stream",
+      "scope": "Only final agent text from one valid completed Codex JSONL turn can be reviewed.",
+      "status": "enforced",
+      "tests": [
+        "test_check.StreamTests"
+      ]
+    },
+    {
+      "id": "evidence_read_contract",
+      "scope": "Ordered fresh bounded evidence reads; missing sources fail.",
+      "status": "enforced",
+      "tests": [
+        "test_check.PaidRuntimeTests.test_source_order_and_updates",
+        "test_check.PaidRuntimeTests.test_missing_source_fails",
+        "test_check.PaidRuntimeTests.test_input_count_is_bounded"
+      ]
+    },
+    {
+      "id": "reuse_exact_identity",
+      "scope": "Full canonical text/evidence/kind/implementation identity must match before reuse.",
+      "status": "enforced",
+      "tests": [
+        "test_reuse.ReuseTests.test_each_identity_change_invalidates",
+        "test_reuse.ReuseTests.test_identity_retains_full_canonical_input"
+      ]
+    },
+    {
+      "id": "reuse_freshness",
+      "scope": "Expiry at the boundary, clock reversal and explicit fresh requests invalidate saved reviews.",
+      "status": "enforced",
+      "tests": [
+        "test_reuse.ReuseTests.test_exact_expiry_and_clock_reversal",
+        "test_reuse.ReuseTests.test_explicit_fresh",
+        "test_reuse.ReuseTests.test_disabled_cache_and_input_bounds"
+      ]
+    },
+    {
+      "id": "reuse_mutation_and_validation",
+      "scope": "Returned mutations cannot poison stored snapshots; invalid snapshots fail revalidation.",
+      "status": "enforced",
+      "tests": [
+        "test_reuse.ReuseTests.test_returned_value_cannot_poison_snapshot",
+        "test_reuse.ReuseTests.test_revalidation_rejects_corrupted_payload"
+      ]
+    },
+    {
+      "id": "reuse_storage_bound",
+      "scope": "Keys and serialized payloads both count toward the entry/byte limits; clearing releases retained entries.",
+      "status": "enforced",
+      "tests": [
+        "test_reuse.ReuseTests.test_entry_and_byte_bounds",
+        "test_reuse.ReuseTests.test_key_and_payload_both_count_toward_byte_limit"
+      ]
+    },
+    {
+      "id": "failed_or_mislabeled_reuse",
+      "scope": "Failed reviews are not cached; successful hits are explicitly labeled saved, not fresh.",
+      "status": "enforced",
+      "tests": [
+        "test_reuse.ReuseTests.test_failure_is_not_cached",
+        "test_reuse.ReuseTests.test_hit_preserves_content_and_labels_reuse"
+      ]
+    },
+    {
+      "id": "missed_explicit_test_failure",
+      "scope": "Exactly All tests passed. paired with one supplied outcome: 0..999999999, One, or Two test(s) failed. Positive counts are deterministically flagged even if model omits them. Other syntax is out of scope.",
+      "status": "enforced",
+      "tests": [
+        "test_known_types.KnownTypeTests"
+      ]
+    },
+    {
+      "id": "paid_measurement_integrity",
+      "scope": "Paid ALU reporting retains measured arithmetic and immutable result records; paid thread edition is the included implementation.",
+      "status": "enforced",
+      "tests": [
+        "test_check.PaidRuntimeTests.test_alu_reporting_contract",
+        "test_check.PaidRuntimeTests.test_paid_edition"
+      ]
+    }
+  ],
+  "out_of_scope": [
+    "Arbitrary natural-language entailment or omissions outside the registered grammar",
+    "Truth/freshness of supplied sources and whether the caller paired the intended run",
+    "Unrestricted model-authored explanations",
+    "Automatic interception of hosted ChatGPT conversations"
+  ]
+}

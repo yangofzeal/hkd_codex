@@ -19,7 +19,8 @@ class SemanticBoundaryCases(unittest.TestCase):
                                 {'findings': []})
         self.assertFalse(result['truth_certified'])
         self.assertFalse(result['semantic_completeness_verified'])
-        self.assertEqual(result['status'], 'no_issues_flagged')
+        self.assertEqual(result['status'], 'needs_review')
+        self.assertEqual(result['known_type_checks'][0]['status'], 'detected')
 
     def test_genuine_contradiction_retains_model_assessment_boundary(self):
         finding = dict(claim='All tests passed.', verdict='contradicted',

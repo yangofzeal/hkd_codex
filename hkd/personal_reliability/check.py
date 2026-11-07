@@ -22,6 +22,7 @@ import time
 import re
 from hkd_runtime import load_sources
 from reuse import ReviewSession
+from known_types import test_failure_guard, VERSION as KNOWN_TYPES_VERSION
 
 LIMIT = 200000
 ROOT = Path(__file__).resolve().parent
@@ -103,6 +104,13 @@ def validate(text, sources, review):
     rows.sort(key=lambda x: x['start'])
     if any(a['end'] > b['start'] for a, b in zip(rows, rows[1:])):
         raise ValueError('Overlapping edits')
+    known_guard = test_failure_guard(text, sources)
+    if known_guard['status'] == 'detected':
+        # The rule covers the entire single assertion. A deterministic finding
+        # replaces model opinions about that same assertion, even on omission.
+        finding = dict(known_guard['finding'])
+        start, end = exact_span(text, finding['claim'])
+        rows = [dict(finding, start=start, end=end)]
     # Preserve original statements and label concerns. No model-authored replacement
     # is silently promoted to a fact. All non-annotated text stays byte-for-byte intact.
     annotated = text
@@ -116,6 +124,7 @@ def validate(text, sources, review):
         'truth_certified': False,
         'semantic_completeness_verified': False,
         'verification_scope': 'claim-span and quote integrity only',
+        'known_type_checks': [{k: v for k, v in known_guard.items() if k != 'finding'}],
         'source_sha256': {k: digest(v) for k, v in sources.items()},
         'limits': 'Model-assisted review, not proof of truth or exhaustive detection. '
                   'Quote matching verifies provenance, not semantic entailment. '
@@ -167,6 +176,13 @@ def codex_text(stream):
 
 
 def review_with_codex(text, sources, kind, timeout=120):
+    known_guard = test_failure_guard(text, sources)
+    if known_guard['status'] == 'detected':
+        return {'findings': [known_guard['finding']]}, {
+            'mode': 'deterministic_known_type', 'model_call_performed': False,
+            'category': known_guard['category'], 'detector_version': KNOWN_TYPES_VERSION,
+            'scope': 'One supported assertion and caller-paired explicit failed-test outcome; no general semantic certification',
+        }
     # Isolated working directory, no inherited project docs, no user configuration
     # or connectors. Authentication stays in the existing Codex credential store.
     with tempfile.TemporaryDirectory(prefix='hkd-review-') as folder:
@@ -208,6 +224,7 @@ def review_with_codex(text, sources, kind, timeout=120):
             log_text = stream.read()
         match = re.search(r'^model: ([A-Za-z0-9_.-]+)\s*$', log_text, re.MULTILINE)
         return json.loads(bounded_text(result)), {
+            'model_call_performed': True,
             'review_wall_seconds': elapsed,
             'model_reported_by_cli': match.group(1) if match else None,
             'model_selection': 'existing CLI default; no model override',
@@ -216,7 +233,7 @@ def review_with_codex(text, sources, kind, timeout=120):
 
 
 def new_session():
-    identity = digest(INSTRUCTIONS + json.dumps(SCHEMA, sort_keys=True) + 'review-snapshot-v2')
+    identity = digest(INSTRUCTIONS + json.dumps(SCHEMA, sort_keys=True) + 'review-snapshot-v3' + KNOWN_TYPES_VERSION)
     return ReviewSession(review_with_codex, validate, identity)
 
 

@@ -85,7 +85,9 @@ class ReviewSession:
                     self._drop(next(iter(self.entries)))
                 self.entries[key] = (self.clock(), payload)
                 self.bytes += entry_bytes
-            report['runtime'] = {'mode': 'fresh_review', 'fresh_model_call': True,
+            model_called = runtime.get('model_call_performed', True)
+            report['runtime'] = {'mode': 'fresh_review' if model_called else 'deterministic_known_type',
+                                 'fresh_model_call': model_called,
                                  'origin_runtime': runtime,
                                  'request_wall_seconds': time.perf_counter() - start}
             return report

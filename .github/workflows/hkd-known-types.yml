@@ -1,0 +1,29 @@
+name: HKD known error contracts
+on:
+  push:
+    paths:
+      - 'hkd/**'
+      - '.github/workflows/hkd-known-types.yml'
+  pull_request:
+    paths:
+      - 'hkd/**'
+      - '.github/workflows/hkd-known-types.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  regressions:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          persist-credentials: false
+      - name: Deterministic tests (no model calls)
+        run: |
+          python3 -m unittest discover -s hkd/personal_reliability -q
+          python3 -m unittest discover -s hkd -p 'test_monitor_known_types.py' -q
+          python3 hkd/personal_reliability/check.py --self-test
+          python3 -m doctest hkd/personal_reliability/known_types.py
+      - name: Enforce every registered contract
+        run: python3 hkd/monitor_known_types.py --output /tmp/hkd-known-type-monitor.json

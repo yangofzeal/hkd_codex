@@ -1,5 +1,24 @@
 # HKD Codex: personal reliability checking and exact local optimization
 
+## Known error types: 15 registered contracts, zero failing regressions
+
+The acceptance target is now explicitly the error types found and registered,
+within each declared input contract. See the [versioned registry](hkd/known_error_types.json),
+[monitor results](hkd/known_type_monitor.json), and
+[repair/monitor policy](hkd/KNOWN_ERROR_CONTRACTS.md). All 53 reviewer tests and
+five monitor self-tests pass locally. The GitHub workflow reruns these checks on
+relevant pushes/PRs. New reproduced types require an open registry entry and a
+failing regression before repair; an open or failing category cannot report green.
+
+The observed missed-test-failure case is now caught independently of model output
+for its precise single-assertion/single-evidence grammar. A direct deterministic
+path avoids a model call for that case. A matched cold comparison measured
+6.239 s before versus 88.287 ms after (70.67x, one sample each). For 1,000
+forced-fresh checks in an already-running CLI: mean 0.109 ms, p95 0.137 ms,
+maximum 0.286 ms. These are new rule evaluations, not cached model answers.
+See [raw benchmark](hkd/known_type_benchmark.json). This guarantee is relative
+to the declared evidence pairing; out-of-scope text still uses model review.
+
 ## Latest integrity, diff and memory audit
 
 See [the completed results table](hkd/RESULTS_20261107.md),

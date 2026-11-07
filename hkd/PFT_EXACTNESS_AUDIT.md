@@ -45,13 +45,17 @@ domain plus an injectivity/recovery certificate, or preservation of every
 distinction required by the requested answer. Fixed-gap factoring does not
 establish those conditions for arbitrary text or arbitrary programs.
 
-Concrete current-architecture counterexample: text says "All tests passed.",
+Historical counterexample at commit `3c3e731ddd`: text says "All tests passed.",
 evidence says "Two tests failed.", and the model returns `findings: []`.
-The validator returns `no_issues_flagged`. The empty array is schema-valid.
+The old validator returned `no_issues_flagged`. The empty array is schema-valid.
 Therefore structural validation is not a proof of semantic completeness.
-The report now explicitly returns `truth_certified: false` and
-`semantic_completeness_verified: false`. Detection of this omission is NOT fixed
-by those labels. They prevent a machine-readable claim of certification.
+The report explicitly returns `truth_certified: false` and
+`semantic_completeness_verified: false`. Those labels alone did not repair
+detection. The subsequent known-type update now deterministically repairs this
+specific omission for the grammar and single-source pairing declared in
+`known_error_types.json`, independent of the model output. It routes detected
+cases without a model call. Other syntax is explicitly out of scope; the rule
+does not assert completeness over arbitrary natural-language omissions.
 
 ## 3. Exact contracts repaired separately
 

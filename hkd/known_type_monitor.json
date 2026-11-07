@@ -1,0 +1,170 @@
+{
+  "scope": "Only registered deterministic error contracts in hkd/personal_reliability; source-pairing assumptions remain explicit.",
+  "categories": [
+    {
+      "id": "unique_claim_span",
+      "scope": "A nonempty claim must have exactly one occurrence, including overlaps.",
+      "status": "passed",
+      "tests_run": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "expected_failures": 0
+    },
+    {
+      "id": "citation_provenance",
+      "scope": "Contradiction citations must reference an existing source and a nonempty exact quote.",
+      "status": "passed",
+      "tests_run": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "expected_failures": 0
+    },
+    {
+      "id": "identical_contradiction_quote",
+      "scope": "A stripped quote identical to the claim cannot alone establish contradiction.",
+      "status": "passed",
+      "tests_run": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "expected_failures": 0
+    },
+    {
+      "id": "edit_integrity",
+      "scope": "Overlapping annotations are rejected and original content/offsets preserved.",
+      "status": "passed",
+      "tests_run": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "expected_failures": 0
+    },
+    {
+      "id": "review_schema",
+      "scope": "Unsupported verdicts/rewrites and citations on unverified findings are rejected.",
+      "status": "passed",
+      "tests_run": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "expected_failures": 0
+    },
+    {
+      "id": "false_truth_certification",
+      "scope": "No-findings output and model judgments never certify overall truth/completeness.",
+      "status": "passed",
+      "tests_run": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "expected_failures": 0
+    },
+    {
+      "id": "incomplete_or_wrong_stream",
+      "scope": "Only final agent text from one valid completed Codex JSONL turn can be reviewed.",
+      "status": "passed",
+      "tests_run": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "expected_failures": 0
+    },
+    {
+      "id": "evidence_read_contract",
+      "scope": "Ordered fresh bounded evidence reads; missing sources fail.",
+      "status": "passed",
+      "tests_run": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "expected_failures": 0
+    },
+    {
+      "id": "reuse_exact_identity",
+      "scope": "Full canonical text/evidence/kind/implementation identity must match before reuse.",
+      "status": "passed",
+      "tests_run": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "expected_failures": 0
+    },
+    {
+      "id": "reuse_freshness",
+      "scope": "Expiry at the boundary, clock reversal and explicit fresh requests invalidate saved reviews.",
+      "status": "passed",
+      "tests_run": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "expected_failures": 0
+    },
+    {
+      "id": "reuse_mutation_and_validation",
+      "scope": "Returned mutations cannot poison stored snapshots; invalid snapshots fail revalidation.",
+      "status": "passed",
+      "tests_run": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "expected_failures": 0
+    },
+    {
+      "id": "reuse_storage_bound",
+      "scope": "Keys and serialized payloads both count toward the entry/byte limits; clearing releases retained entries.",
+      "status": "passed",
+      "tests_run": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "expected_failures": 0
+    },
+    {
+      "id": "failed_or_mislabeled_reuse",
+      "scope": "Failed reviews are not cached; successful hits are explicitly labeled saved, not fresh.",
+      "status": "passed",
+      "tests_run": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "expected_failures": 0
+    },
+    {
+      "id": "missed_explicit_test_failure",
+      "scope": "Exactly All tests passed. paired with one supplied outcome: 0..999999999, One, or Two test(s) failed. Positive counts are deterministically flagged even if model omits them. Other syntax is out of scope.",
+      "status": "passed",
+      "tests_run": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "expected_failures": 0
+    },
+    {
+      "id": "paid_measurement_integrity",
+      "scope": "Paid ALU reporting retains measured arithmetic and immutable result records; paid thread edition is the included implementation.",
+      "status": "passed",
+      "tests_run": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "expected_failures": 0
+    }
+  ],
+  "passed_categories": 15,
+  "total_categories": 15,
+  "failing_categories": [],
+  "registry_sha256": "78ca2e2cc0d2ebb010a0ca30d46925eaae7cbe64ca37c2c9516659a6ea7e4864",
+  "source_sha256": {
+    "check.py": "6476cac0ab27029dabec522662c864c7b4e3f235b652c4d0f4b010a5a9283713",
+    "hkd_runtime.py": "915b1223e8e9319e13abbf1f98211a2490f124bab96dac0062573a62015a4e6c",
+    "known_types.py": "d3c82d36089c0b9d55dc840a082b5a7e22fe5b54afd099fa4bbd2d6af0b996b1",
+    "reuse.py": "2f392b1ce4f86c8e666a89c30114c0d17e64915a856f293a48a3b8a22957b8e3",
+    "test_check.py": "849cf2968070f61abb5253550a56d13f5a9a9a641174f094ff9d32c9e546c17b",
+    "test_corner_cases.py": "3baf3a72968967d87cebd25254934a0d20adf49075afe6a81923754a3c172223",
+    "test_known_types.py": "94876d9dbf3be393fd8b72772f1dc544cb91d5b58961f617527b8686d0132ef7",
+    "test_reuse.py": "aa343c45e1e2ed965d8e1a4dfe6ddc9789da975ec3d125d84b0e5866471f37ed"
+  },
+  "limits": "Zero failing registered regressions, not proof of zero errors outside each declared contract. This monitors repository tests, not live ChatGPT conversations."
+}

@@ -1,0 +1,23 @@
+{
+  "recorded_at": "2026-11-07T14:45:13.411059+00:00",
+  "scope": "Registered error contracts only",
+  "reviewer_tests_passed": 53,
+  "monitor_self_tests_passed": 5,
+  "registered_categories": 15,
+  "failing_registered_categories": 0,
+  "doctest_failures": 0,
+  "monitor_command": "python3.11 hkd/monitor_known_types.py",
+  "source_sha256": {
+    "hkd/personal_reliability/check.py": "6476cac0ab27029dabec522662c864c7b4e3f235b652c4d0f4b010a5a9283713",
+    "hkd/personal_reliability/reuse.py": "2f392b1ce4f86c8e666a89c30114c0d17e64915a856f293a48a3b8a22957b8e3",
+    "hkd/personal_reliability/known_types.py": "d3c82d36089c0b9d55dc840a082b5a7e22fe5b54afd099fa4bbd2d6af0b996b1",
+    "hkd/personal_reliability/test_known_types.py": "94876d9dbf3be393fd8b72772f1dc544cb91d5b58961f617527b8686d0132ef7",
+    "hkd/personal_reliability/test_corner_cases.py": "3baf3a72968967d87cebd25254934a0d20adf49075afe6a81923754a3c172223",
+    "hkd/known_error_types.json": "78ca2e2cc0d2ebb010a0ca30d46925eaae7cbe64ca37c2c9516659a6ea7e4864",
+    "hkd/monitor_known_types.py": "ee22a06b43b2b554d3167b3edc7c0f999ed14bcd0b7b72b81e00110a90010f0f",
+    "hkd/test_monitor_known_types.py": "b146d88fb94658ba20ceebdf0015b82a6ea2c509ecbe6670d2c1e303acfaf03e",
+    "hkd/known_type_benchmark.py": "e7bc324a08969450fd30d4664886dd0dba569b5d35c215f39ac766aea644f4ae",
+    "hkd/known_type_benchmark.json": "344ad2bc7da68718b74d70af7b96ba9d593f63153a33c785e6a0d38a5028a6c4",
+    ".github/workflows/hkd-known-types.yml": "1ef8e6c6ee3956507a85e751d70b3ab386d4bbc35f1f944efe29b298e0cb8567"
+  }
+}
