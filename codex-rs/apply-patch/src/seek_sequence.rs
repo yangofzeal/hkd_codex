@@ -94,10 +94,16 @@ pub(crate) fn seek_sequence(
             .collect::<String>()
     }
 
+    // Normalize only pattern entries actually reached, once per search. Eagerly
+    // normalizing the whole pattern wastes work when its first line never matches.
+    let mut normalized_pattern: Vec<String> = Vec::new();
     for i in search_start..=lines.len().saturating_sub(pattern.len()) {
         let mut ok = true;
         for (p_idx, pat) in pattern.iter().enumerate() {
-            if normalise(&lines[i + p_idx]) != normalise(pat) {
+            if p_idx == normalized_pattern.len() {
+                normalized_pattern.push(normalise(pat));
+            }
+            if normalise(&lines[i + p_idx]) != normalized_pattern[p_idx] {
                 ok = false;
                 break;
             }
