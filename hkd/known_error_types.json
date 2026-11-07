@@ -143,6 +143,14 @@
         "test_check.PaidRuntimeTests.test_alu_reporting_contract",
         "test_check.PaidRuntimeTests.test_paid_edition"
       ]
+    },
+    {
+      "id": "empty_or_incomplete_registry",
+      "scope": "A registry cannot report success when empty, missing required scope/tests, duplicated, open or referencing missing regressions.",
+      "status": "enforced",
+      "tests": [
+        "test_monitor_known_types.MonitorTests"
+      ]
     }
   ],
   "out_of_scope": [

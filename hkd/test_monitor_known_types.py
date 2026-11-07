@@ -9,6 +9,10 @@ import monitor_known_types
 
 
 class MonitorTests(unittest.TestCase):
+    def test_empty_registry_cannot_be_green(self):
+        with self.assertRaises(ValueError):
+            self.run_registry([])
+
     def run_registry(self, rows):
         with tempfile.TemporaryDirectory() as folder:
             path = Path(folder) / 'registry.json'

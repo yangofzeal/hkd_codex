@@ -15,6 +15,8 @@ sys.path.insert(0, str(ROOT / 'personal_reliability'))
 def monitor(registry_path):
     registry = json.loads(Path(registry_path).read_text())
     categories = registry['categories']
+    if not isinstance(categories, list) or not categories:
+        raise ValueError('The known-type registry must contain at least one category')
     ids = [c['id'] for c in categories]
     if len(ids) != len(set(ids)):
         raise ValueError('Duplicate category IDs')
@@ -33,13 +35,23 @@ def monitor(registry_path):
                      'expected_failures': len(result.expectedFailures)})
         if not passed:
             print(output.getvalue(), file=sys.stderr)
+    sources = {ROOT / 'personal_reliability' / name for name in
+               ['check.py', 'reuse.py', 'known_types.py', 'hkd_runtime.py']}
+    sources.update(ROOT / 'vendor' / name for name in ['hkd_alu.py', 'hkd_thread_paid.py'])
+    sources.add(Path(__file__).resolve())
+    for category in categories:
+        for name in category['tests']:
+            module = sys.modules.get(name.split('.')[0])
+            path = getattr(module, '__file__', None)
+            if path and ROOT in Path(path).resolve().parents:
+                sources.add(Path(path).resolve())
     return {'scope': registry['scope'], 'categories': rows,
             'passed_categories': sum(r['status'] == 'passed' for r in rows),
             'total_categories': len(rows),
             'failing_categories': [r['id'] for r in rows if r['status'] != 'passed'],
             'registry_sha256': hashlib.sha256(Path(registry_path).read_bytes()).hexdigest(),
-            'source_sha256': {p.name: hashlib.sha256(p.read_bytes()).hexdigest()
-                              for p in sorted((ROOT / 'personal_reliability').glob('*.py'))},
+            'source_sha256': {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
+                              for p in sorted(sources)},
             'limits': 'Zero failing registered regressions, not proof of zero errors outside each declared contract. This monitors repository tests, not live ChatGPT conversations.'}
 
 

@@ -1,12 +1,12 @@
 # HKD Codex: personal reliability checking and exact local optimization
 
-## Known error types: 15 registered contracts, zero failing regressions
+## Known error types: 16 registered contracts, zero failing regressions
 
 The acceptance target is now explicitly the error types found and registered,
 within each declared input contract. See the [versioned registry](hkd/known_error_types.json),
 [monitor results](hkd/known_type_monitor.json), and
 [repair/monitor policy](hkd/KNOWN_ERROR_CONTRACTS.md). All 53 reviewer tests and
-five monitor self-tests pass locally. The GitHub workflow reruns these checks on
+six monitor self-tests pass locally. The GitHub workflow reruns these checks on
 relevant pushes/PRs. New reproduced types require an open registry entry and a
 failing regression before repair; an open or failing category cannot report green.
 
