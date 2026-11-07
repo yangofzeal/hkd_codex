@@ -7,7 +7,6 @@ Nothing is persisted to disk. This implements the video paper's reuse principle
 only for saved artifacts and deterministic validation, not for hidden LLM states.
 """
 from collections import OrderedDict
-import hashlib
 import json
 import math
 import threading
@@ -38,7 +37,7 @@ class ReviewSession:
     def _drop(self, key):
         row = self.entries.pop(key, None)
         if row is not None:
-            self.bytes -= len(row[1])
+            self.bytes -= len(key) + len(row[1])
 
     def review(self, text, sources, kind='response', fresh=False):
         if kind not in ('prompt', 'response') or not isinstance(text, str) or not text.strip():
@@ -51,7 +50,10 @@ class ReviewSession:
         start = time.perf_counter()
         material = json.dumps([self.identity, kind, text, sources], sort_keys=True,
                               separators=(',', ':'), ensure_ascii=False).encode('utf-8')
-        key = hashlib.sha256(material).hexdigest()
+        # A digest alone is not a mathematical identity proof. Python dicts use
+        # byte equality after hashing, so even hash collisions cannot reuse a
+        # review for different canonical input bytes. Account for these bytes.
+        key = material
         with self.lock:
             now = self.clock()
             # Purge expired entries even when requests use different keys.
@@ -76,12 +78,13 @@ class ReviewSession:
             report = self.validator(text, sources, review)
             payload = json.dumps({'review': review, 'runtime': runtime},
                                  ensure_ascii=False).encode('utf-8')
-            if self.ttl > 0 and len(payload) <= self.max_bytes:
+            entry_bytes = len(key) + len(payload)
+            if self.ttl > 0 and entry_bytes <= self.max_bytes:
                 while self.entries and (len(self.entries) >= self.max_entries or
-                                        self.bytes + len(payload) > self.max_bytes):
+                                        self.bytes + entry_bytes > self.max_bytes):
                     self._drop(next(iter(self.entries)))
                 self.entries[key] = (self.clock(), payload)
-                self.bytes += len(payload)
+                self.bytes += entry_bytes
             report['runtime'] = {'mode': 'fresh_review', 'fresh_model_call': True,
                                  'origin_runtime': runtime,
                                  'request_wall_seconds': time.perf_counter() - start}

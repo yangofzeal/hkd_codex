@@ -95,6 +95,24 @@ class ReuseTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 self.session.review(text, {})
 
+    def test_identity_retains_full_canonical_input(self):
+        import json
+        self.session.review('A', {'s': 'exact evidence'})
+        key = next(iter(self.session.entries))
+        self.assertEqual(json.loads(key.decode('utf-8')),
+                         ['test-v1', 'response', 'A', {'s': 'exact evidence'}])
+        self.session.review('B', {'s': 'exact evidence'})
+        self.assertEqual(self.calls, 2)
+
+    def test_key_and_payload_both_count_toward_byte_limit(self):
+        self.session.max_bytes = 200
+        self.session.review('a' * 180, {})
+        self.assertEqual(len(self.session.entries), 0)
+        self.session.max_bytes = 1000
+        self.session.review('A', {})
+        self.assertEqual(self.session.bytes,
+                         sum(len(k) + len(v[1]) for k, v in self.session.entries.items()))
+
 
 if __name__ == '__main__':
     assert doctest.testmod().failed == 0
