@@ -1,0 +1,10 @@
+{
+  "baseline_commit": "442a2d44657a7f7a019cfadf9504925fb2d63074",
+  "input": {"text": "aaa", "claim": "aa"},
+  "observed_before": [0, 2],
+  "correct_occurrence_starts": [0, 1],
+  "defect": "str.count ignores overlapping matches, violating unique-span contract",
+  "fix": "Find first occurrence, then search from its start plus one",
+  "regression": "test_corner_cases.SpanCornerCases: overlapping Unicode examples and 3937 exhaustive text/claim pairs",
+  "scope": "Exact span uniqueness, not semantic truth or exhaustive hallucination detection"
+}

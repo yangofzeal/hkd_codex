@@ -59,9 +59,11 @@ def digest(text):
 
 
 def exact_span(text, claim):
-    if not claim or text.count(claim) != 1:
+    # str.count counts non-overlapping matches: 'aaa'.count('aa') is 1.
+    # Search again one character after the first start to include overlaps.
+    start = text.find(claim) if claim else -1
+    if start < 0 or text.find(claim, start + 1) >= 0:
         raise ValueError('Claim must occur exactly once in the original text')
-    start = text.index(claim)
     return start, start + len(claim)
 
 
