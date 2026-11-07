@@ -188,7 +188,7 @@ fn validate_len(
     if value.is_empty() {
         return Err(SkillParseError::MissingField(field_name));
     }
-    if value.chars().count() > max_len {
+    if crate::hkd_length_bound::exceeds_char_limit(value, max_len) {
         return Err(SkillParseError::InvalidField {
             field: field_name,
             reason: format!("exceeds maximum length of {max_len} characters"),

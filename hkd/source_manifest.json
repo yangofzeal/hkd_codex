@@ -1,0 +1,63 @@
+{
+  "upstream_repository": "https://github.com/openai/codex",
+  "upstream_branch": "main",
+  "upstream_commit": "57a808a3920f05f2d4b9eab2d0493e1df136ae6b",
+  "installed_cli_used_for_live_reviews": "codex-cli 0.167.0",
+  "measurement_host": "Apple M1 / macOS",
+  "rustc": "rustc 1.98.1 (48a229cea 2026-09-01) (Homebrew)",
+  "recorded_at": "2026-11-07T13:34:03.949245+00:00",
+  "hardware_cycles": {
+    "measured": false,
+    "reason": "xctrace requires Xcode; only CommandLineTools is installed"
+  },
+  "full_crate_tests": {
+    "completed": false,
+    "reason": "cargo test -p codex-skills --lib began fetching V8/Chromium workspace dependencies; fetch stopped. No full-crate pass claimed."
+  },
+  "focused_rust_tests": {
+    "passed": 3,
+    "reference_comparisons": 1902
+  },
+  "python_unit_tests": {
+    "passed": 29,
+    "on_both_versions": true
+  },
+  "source_sha256": {
+    "hkd/length_benchmark.rs": "865d9042bc654263d5a32d2fedab0120cf25ce355a8788bc6b0df23a9ed37ed2",
+    "hkd/personal_reliability/check.py": "e38714e6d8cbf729759b215834e924fcfbea456328189ed5bcdbb0df27b958a8",
+    "hkd/personal_reliability/hkd_runtime.py": "915b1223e8e9319e13abbf1f98211a2490f124bab96dac0062573a62015a4e6c",
+    "hkd/personal_reliability/test_check.py": "849cf2968070f61abb5253550a56d13f5a9a9a641174f094ff9d32c9e546c17b",
+    "hkd/reliability_benchmark.py": "797b2655d3ae2fc7c5ec347a9111c2650321b13e6e0fa978249c0059d96c3216",
+    "hkd/vendor/hkd_alu.py": "6ec9c1ed9f3f4552f0e23455713d714950673837392c4c5b7afdbc4555fe8f37",
+    "hkd/vendor/hkd_thread_paid.py": "4469e333e49b0a3c22ed452897cd25559651fc66e8d9a9fbbabe39037e99138f",
+    "codex-rs/skills/src/assets/samples/imagegen/scripts/image_gen.py": "b4345cf835e5b593b97df6bb2b70bda493b8a97eee4cabbc99b2fa57dba9b448",
+    "codex-rs/skills/src/assets/samples/imagegen/scripts/remove_chroma_key.py": "a5893c4bd04b21abced33731ea89d2ac428e81d92a0368eb18ffbe4fda5253e2",
+    "codex-rs/skills/src/assets/samples/skill-creator/scripts/generate_openai_yaml.py": "816df12072d74faf924d802a6599a139997e1441e90bfe4869ec304f2e5e2851",
+    "codex-rs/skills/src/assets/samples/skill-creator/scripts/init_skill.py": "bf0656a5f9d8d8cdecf0245eaf27e1df8e0e9b6d40ccdda814eb8e3d5f6992c8",
+    "codex-rs/skills/src/assets/samples/skill-creator/scripts/quick_validate.py": "ee6dba90f44d37171c5a6edb8095979c54919ff6822c1a907afca2e78c48738c",
+    "codex-rs/skills/src/assets/samples/skill-installer/scripts/github_utils.py": "61c1bbe2ae217433b4b6f9f09f21aca4df52c12598068343ade719f706e4859b",
+    "codex-rs/skills/src/assets/samples/skill-installer/scripts/install-skill-from-github.py": "38f311b75664bb063808f982c600271ebc4b560830f491705190f88a94e3e781",
+    "codex-rs/skills/src/assets/samples/skill-installer/scripts/list-skills.py": "9d6dfb2abf3afeee7f027a89fb1626b918a973da18f4eb6c25681286301beb41",
+    "codex-rs/skills/src/hkd_length_bound.rs": "68d73e5922af99940e45cc5d9dc16697838c5f2dddf85deac035bf6a4e20ce03",
+    "codex-rs/skills/src/interface.rs": "ee6d42595814fd9c19408b249c365b8f51046306297fc33cae935c9b2542db39",
+    "codex-rs/skills/src/interface_tests.rs": "153926ca7637348cacd1f3f7c779f915fd0300cbf582e9c222e268e309455f16",
+    "codex-rs/skills/src/invocation.rs": "63294bd89a3dfe7a66204b1e3c911dfa238b5debc219fa7ef9d8935cfc801a84",
+    "codex-rs/skills/src/invocation_tests.rs": "93118458b4e0d45e81084e9332bfce59f7e861f32341a6ef529b7e9c4588d419",
+    "codex-rs/skills/src/lib.rs": "d177cda8e98029d2fb5928f6d050601c7de51fc6e1fd1fa13b63e93dc1ebc38e",
+    "codex-rs/skills/src/loading.rs": "731255be7976e46b7bb7c19103215731adaf0b7f2e0869f176651aa0b8fe0955",
+    "codex-rs/skills/src/loading_tests.rs": "72a45664525d1cf3e21cba210ce1fc308c2e3a6152d41c6abca101eb415092e8",
+    "codex-rs/skills/src/mentions.rs": "c0b4a9cb20805d0e4bc9084418704c4fac77eca46fb815b67c73680569d749bd",
+    "codex-rs/skills/src/mentions_tests.rs": "e773ff023471529975d9ed40508472b805ff399baa6c237821aa2ed5f608aa65",
+    "codex-rs/skills/src/metadata.rs": "388281659ebe31176a6f2e951b34c07d8dbeb8c40b0e0ab16e040fe6b0984872",
+    "codex-rs/skills/src/model.rs": "6c0336c8af3f9ec7e3fa95eaccab9f17cf64b59544842dfe3f980f8cf4468382",
+    "codex-rs/skills/src/model_tests.rs": "8b063394e056cdc4e843d0d4ab8e3e7aa0e2799a3d8aa05ca244b8e99a022634",
+    "codex-rs/skills/src/name_counts.rs": "4a2318f1133032eb650572366431fbe21e5f86ac4074ae7e1c18c13515b780ae",
+    "codex-rs/skills/src/parser.rs": "a470e096f91f6f0edd73c3bec952d0b679c5bec7b5354e2061cecb2f369ca95c",
+    "codex-rs/skills/src/parser_tests.rs": "89bf58eb2bd97c47bcefcdc605914bc5b3b023e30a8504fa93e2040ae1913b57",
+    "codex-rs/skills/src/selection.rs": "506bc732789ffa40ad03882f2dc81e4b7f6194e1eb5b0854c5d6513f40185f91",
+    "codex-rs/skills/src/selection_tests.rs": "d40a453f31aa1f0dfdeaeea8b7812d829ddafcdd4f2256c9bb74639f15a5fbf9"
+  },
+  "python_primary": "3.11.16",
+  "python_legacy_tested": "3.4.3",
+  "obfuscator_md5": "c98069278cc417b0ae495885616e7b97"
+}

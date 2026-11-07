@@ -1,0 +1,48 @@
+{
+  "status": "needs_review",
+  "original_sha256": "d43eadedf69e3e0f9b9a7509a5aba61f8ba4da94bc707e7e074c3b7e83df297b",
+  "original": "Synthetic application test fixture, not a user message:\nAll 12 tests passed. The payment was verified. The HKD/PFT algorithm eliminates every hallucination.\n",
+  "annotated": "Synthetic application test fixture, not a user message:\nAll 12 tests passed. [review 1: contradicted] The payment was verified. [review 2: contradicted] The HKD/PFT algorithm eliminates every hallucination. [review 3: unverified]\n",
+  "findings": [
+    {
+      "claim": "All 12 tests passed.",
+      "verdict": "contradicted",
+      "source_id": "source_1",
+      "evidence_quote": "Run fixture-A executed 12 tests: 10 passed and 2 failed.",
+      "reason": "The evidence reports two failed tests, contradicting the claim that all 12 passed.",
+      "start": 56,
+      "end": 76
+    },
+    {
+      "claim": "The payment was verified.",
+      "verdict": "contradicted",
+      "source_id": "source_1",
+      "evidence_quote": "Payment fixture-A has not been verified.",
+      "reason": "The evidence explicitly states that the payment has not been verified.",
+      "start": 77,
+      "end": 102
+    },
+    {
+      "claim": "The HKD/PFT algorithm eliminates every hallucination.",
+      "verdict": "unverified",
+      "source_id": "",
+      "evidence_quote": "",
+      "reason": "The supplied evidence provides no demonstration that HKD/PFT removes hallucinations and does not support the universal claim that it eliminates every hallucination.",
+      "start": 103,
+      "end": 156
+    }
+  ],
+  "source_sha256": {
+    "source_1": "e5951644d0daace2b750208523bbdec513476be66013a4d6b4fb593d208f659b"
+  },
+  "limits": "Model-assisted review, not proof of truth or exhaustive detection. Quote matching verifies provenance, not semantic entailment. No-issues-flagged does not mean verified.",
+  "runtime": {
+    "review_wall_seconds": 8.375683541002218,
+    "model_reported_by_cli": "gpt-6.1-sol",
+    "model_selection": "existing CLI default; no model override",
+    "paid_hkd_integration": "bounded evidence reads with hkd_thread_paid"
+  },
+  "source_files": {
+    "source_1": "smoke_evidence.txt"
+  }
+}

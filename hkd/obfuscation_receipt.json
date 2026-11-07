@@ -1,0 +1,17 @@
+{
+  "tool_md5": "c98069278cc417b0ae495885616e7b97",
+  "tool_sha256": "e1ea8d0de598f1dc6d2c08f337167c6f1634be6941f0eddedc83dd7fa83f8a88",
+  "builder_python": "3.4.3",
+  "primary_execution_python": "3.11.16",
+  "modules": {
+    "hkd_alu.py": {
+      "payload_sha256": "15dee954911c5f6a17ad97b0a8d25c60f0ffafac4f1093a0374d492e79f5e822",
+      "protected_sha256": "6ec9c1ed9f3f4552f0e23455713d714950673837392c4c5b7afdbc4555fe8f37"
+    },
+    "hkd_thread_paid.py": {
+      "payload_sha256": "100f6d9f3db20c038efefb8ec213caee24252d0c9b39ca2c50faa6f94ed39ca3",
+      "protected_sha256": "4469e333e49b0a3c22ed452897cd25559651fc66e8d9a9fbbabe39037e99138f"
+    }
+  },
+  "plaintext_paid_modules_published": false
+}

@@ -170,7 +170,7 @@ fn resolve_str(value: Option<String>, max_len: usize, field: &'static str) -> Op
         tracing::warn!("ignoring {field}: value is empty");
         return None;
     }
-    if value.chars().count() > max_len {
+    if crate::hkd_length_bound::exceeds_char_limit(value, max_len) {
         tracing::warn!("ignoring {field}: exceeds maximum length of {max_len} characters");
         return None;
     }

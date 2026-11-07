@@ -1,0 +1,14 @@
+{
+  "status": "no_issues_flagged",
+  "original_sha256": "91b3fad3fa5867a5160e2b7ed697761fcb4f2690f2735d0a7b5f2c5589e2947b",
+  "original": "Synthetic application test fixture, not a user message:\nRun fixture-A executed 12 tests: 10 passed and 2 failed.\nPayment fixture-A has not been verified.\nPlease investigate whether a future algorithm could reduce unsupported claims.\n",
+  "annotated": "Synthetic application test fixture, not a user message:\nRun fixture-A executed 12 tests: 10 passed and 2 failed.\nPayment fixture-A has not been verified.\nPlease investigate whether a future algorithm could reduce unsupported claims.\n",
+  "findings": [],
+  "source_sha256": {
+    "source_1": "e5951644d0daace2b750208523bbdec513476be66013a4d6b4fb593d208f659b"
+  },
+  "limits": "Model-assisted review, not proof of truth or exhaustive detection. Quote matching verifies provenance, not semantic entailment. No-issues-flagged does not mean verified.",
+  "source_files": {
+    "source_1": "smoke_evidence.txt"
+  }
+}

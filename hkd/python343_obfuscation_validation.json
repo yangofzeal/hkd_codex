@@ -1,0 +1,18 @@
+{
+  "python": "3.4.3 (default, Nov 12 2018, 22:25:49) \n[GCC 4.8.4]",
+  "tests_output": "test_changed_source_invalidates_quote (test_check.IntegrityTests) ... ok\ntest_clean_is_not_verified (test_check.IntegrityTests) ... ok\ntest_empty_quote (test_check.IntegrityTests) ... ok\ntest_extra_rewrite_field (test_check.IntegrityTests) ... ok\ntest_invented_claim (test_check.IntegrityTests) ... ok\ntest_invented_quote (test_check.IntegrityTests) ... ok\ntest_invented_source (test_check.IntegrityTests) ... ok\ntest_multiple_edits_preserve_offsets (test_check.IntegrityTests) ... ok\ntest_overlap (test_check.IntegrityTests) ... ok\ntest_preserves_original (test_check.IntegrityTests) ... ok\ntest_repeated_span (test_check.IntegrityTests) ... ok\ntest_unknown_has_no_fake_citation (test_check.IntegrityTests) ... ok\ntest_unknown_label (test_check.IntegrityTests) ... ok\ntest_unknown_verdict (test_check.IntegrityTests) ... ok\ntest_alu_reporting_contract (test_check.PaidRuntimeTests) ... ok\ntest_input_count_is_bounded (test_check.PaidRuntimeTests) ... ok\ntest_missing_source_fails (test_check.PaidRuntimeTests) ... ok\ntest_paid_edition (test_check.PaidRuntimeTests) ... ok\ntest_source_order_and_updates (test_check.PaidRuntimeTests) ... ok\ntest_cli_invalid_does_not_release_text (test_check.StreamTests) ... ok\ntest_cli_valid_offline_review (test_check.StreamTests) ... ok\ntest_completion_without_start (test_check.StreamTests) ... ok\ntest_error_after_message (test_check.StreamTests) ... ok\ntest_extra_turn (test_check.StreamTests) ... ok\ntest_failed (test_check.StreamTests) ... ok\ntest_final_only (test_check.StreamTests) ... ok\ntest_invalid_json (test_check.StreamTests) ... ok\ntest_missing_message (test_check.StreamTests) ... ok\ntest_truncated (test_check.StreamTests) ... ok\n\n----------------------------------------------------------------------\nRan 29 tests in 0.162s\n\nOK\n",
+  "modules": {
+    "hkd_thread_paid.py": {
+      "sha256": "4469e333e49b0a3c22ed452897cd25559651fc66e8d9a9fbbabe39037e99138f",
+      "build_log": "source_bytes=3294\npacked_bytes=1001\nblocks=8\nblock_size=128\nrichness_total=263743\nsha256_merkle=06565e58640f0a6a8ee1d07023077baee848ac83f8e75a156edb8de656e67c1e\nbuilder_python=3.4.3\npayload=utf8-source\nmarshal_code_objects=NO\nper_call_wrapper=NO\ntarget_min_python=3.4.3\noutput=<isolated-test-dir>/hkd/vendor/hkd_thread_paid.py\n"
+    },
+    "hkd_alu.py": {
+      "sha256": "6ec9c1ed9f3f4552f0e23455713d714950673837392c4c5b7afdbc4555fe8f37",
+      "build_log": "source_bytes=4644\npacked_bytes=1720\nblocks=14\nblock_size=128\nrichness_total=459167\nsha256_merkle=eb736a6003fea8b2468b3948263383d66b41d70bc760e0bc20829ac04a7fdf26\nbuilder_python=3.4.3\npayload=utf8-source\nmarshal_code_objects=NO\nper_call_wrapper=NO\ntarget_min_python=3.4.3\noutput=<isolated-test-dir>/hkd/vendor/hkd_alu.py\n"
+    }
+  },
+  "doctest_exit": 0,
+  "doctest_output": "",
+  "tests_exit": 0,
+  "obfuscator_md5": "c98069278cc417b0ae495885616e7b97"
+}

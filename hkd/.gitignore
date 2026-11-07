@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+*.dylib
+*.so
+*.exe
+private_*

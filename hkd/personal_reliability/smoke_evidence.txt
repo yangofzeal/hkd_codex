@@ -1,0 +1,4 @@
+Synthetic evidence for application testing only:
+Run fixture-A executed 12 tests: 10 passed and 2 failed.
+Payment fixture-A has not been verified.
+No HKD/PFT hallucination-removal algorithm has been demonstrated.

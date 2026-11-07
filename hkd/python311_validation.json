@@ -1,0 +1,41 @@
+{
+  "python": "3.11.16 (main, Aug 12 2026, 23:03:19) [Clang 17.0.0 (clang-1700.6.4.2)]",
+  "test_exit": 0,
+  "test_output": "test_changed_source_invalidates_quote (test_check.IntegrityTests.test_changed_source_invalidates_quote) ... ok\ntest_clean_is_not_verified (test_check.IntegrityTests.test_clean_is_not_verified) ... ok\ntest_empty_quote (test_check.IntegrityTests.test_empty_quote) ... ok\ntest_extra_rewrite_field (test_check.IntegrityTests.test_extra_rewrite_field) ... ok\ntest_invented_claim (test_check.IntegrityTests.test_invented_claim) ... ok\ntest_invented_quote (test_check.IntegrityTests.test_invented_quote) ... ok\ntest_invented_source (test_check.IntegrityTests.test_invented_source) ... ok\ntest_multiple_edits_preserve_offsets (test_check.IntegrityTests.test_multiple_edits_preserve_offsets) ... ok\ntest_overlap (test_check.IntegrityTests.test_overlap) ... ok\ntest_preserves_original (test_check.IntegrityTests.test_preserves_original) ... ok\ntest_repeated_span (test_check.IntegrityTests.test_repeated_span) ... ok\ntest_unknown_has_no_fake_citation (test_check.IntegrityTests.test_unknown_has_no_fake_citation) ... ok\ntest_unknown_label (test_check.IntegrityTests.test_unknown_label) ... ok\ntest_unknown_verdict (test_check.IntegrityTests.test_unknown_verdict) ... ok\ntest_alu_reporting_contract (test_check.PaidRuntimeTests.test_alu_reporting_contract) ... ok\ntest_input_count_is_bounded (test_check.PaidRuntimeTests.test_input_count_is_bounded) ... ok\ntest_missing_source_fails (test_check.PaidRuntimeTests.test_missing_source_fails) ... ok\ntest_paid_edition (test_check.PaidRuntimeTests.test_paid_edition) ... ok\ntest_source_order_and_updates (test_check.PaidRuntimeTests.test_source_order_and_updates) ... ok\ntest_cli_invalid_does_not_release_text (test_check.StreamTests.test_cli_invalid_does_not_release_text) ... ok\ntest_cli_valid_offline_review (test_check.StreamTests.test_cli_valid_offline_review) ... ok\ntest_completion_without_start (test_check.StreamTests.test_completion_without_start) ... ok\ntest_error_after_message (test_check.StreamTests.test_error_after_message) ... ok\ntest_extra_turn (test_check.StreamTests.test_extra_turn) ... ok\ntest_failed (test_check.StreamTests.test_failed) ... ok\ntest_final_only (test_check.StreamTests.test_final_only) ... ok\ntest_invalid_json (test_check.StreamTests.test_invalid_json) ... ok\ntest_missing_message (test_check.StreamTests.test_missing_message) ... ok\ntest_truncated (test_check.StreamTests.test_truncated) ... ok\n\n----------------------------------------------------------------------\nRan 29 tests in 0.186s\n\nOK\n",
+  "doctests": [
+    {
+      "file": "hkd/personal_reliability/check.py",
+      "attempted": 2,
+      "failed": 0
+    },
+    {
+      "file": "hkd/personal_reliability/hkd_runtime.py",
+      "attempted": 1,
+      "failed": 0
+    },
+    {
+      "file": "hkd/personal_reliability/test_check.py",
+      "attempted": 0,
+      "failed": 0
+    },
+    {
+      "file": "hkd/reliability_benchmark.py",
+      "attempted": 0,
+      "failed": 0
+    },
+    {
+      "file": "hkd/vendor/hkd_alu.py",
+      "attempted": 1,
+      "failed": 0
+    },
+    {
+      "file": "hkd/vendor/hkd_thread_paid.py",
+      "attempted": 0,
+      "failed": 0
+    }
+  ],
+  "protected_module_sha256": {
+    "hkd_alu.py": "6ec9c1ed9f3f4552f0e23455713d714950673837392c4c5b7afdbc4555fe8f37",
+    "hkd_thread_paid.py": "4469e333e49b0a3c22ed452897cd25559651fc66e8d9a9fbbabe39037e99138f"
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "scope": "Synthetic per-predicate timings; summed row timings are not a measured whole-application workload. No hardware cycles measured.",
+  "results": [
+    {
+      "component": "empty",
+      "baseline_seconds": 3.7302e-09,
+      "elapsed_seconds": 2.3092000000000003e-09,
+      "speedup": 1.6153646284427507,
+      "overall_contribution_percent": 7.967024736019015e-05,
+      "result": "exact predicate match",
+      "logical_items": 1,
+      "throughput_items_per_second": 433050407.0673826,
+      "scale": "sub-4M"
+    },
+    {
+      "component": "ascii16",
+      "baseline_seconds": 1.42707e-08,
+      "elapsed_seconds": 3.8175e-09,
+      "speedup": 3.738231827111984,
+      "overall_contribution_percent": 0.0005860725050707528,
+      "result": "exact predicate match",
+      "logical_items": 1,
+      "throughput_items_per_second": 261951538.9652914,
+      "scale": "sub-4M"
+    },
+    {
+      "component": "ascii64",
+      "baseline_seconds": 1.20389e-08,
+      "elapsed_seconds": 2.6884e-09,
+      "speedup": 4.478091057878292,
+      "overall_contribution_percent": 0.0005242481688539467,
+      "result": "exact predicate match",
+      "logical_items": 1,
+      "throughput_items_per_second": 371968457.07484007,
+      "scale": "sub-4M"
+    },
+    {
+      "component": "ascii65",
+      "baseline_seconds": 1.38705e-08,
+      "elapsed_seconds": 1.4875e-08,
+      "speedup": 0.9324705882352942,
+      "overall_contribution_percent": 0.0,
+      "result": "exact predicate match",
+      "logical_items": 1,
+      "throughput_items_per_second": 67226890.75630252,
+      "scale": "sub-4M"
+    },
+    {
+      "component": "ascii256",
+      "baseline_seconds": 2.60669e-08,
+      "elapsed_seconds": 2.66353e-08,
+      "speedup": 0.9786598987058527,
+      "overall_contribution_percent": 0.0,
+      "result": "exact predicate match",
+      "logical_items": 1,
+      "throughput_items_per_second": 37544161.31975236,
+      "scale": "sub-4M"
+    },
+    {
+      "component": "ascii257",
+      "baseline_seconds": 2.3101199999999997e-08,
+      "elapsed_seconds": 1.5377e-09,
+      "speedup": 15.02321649216362,
+      "overall_contribution_percent": 0.0012089861920840678,
+      "result": "exact predicate match",
+      "logical_items": 1,
+      "throughput_items_per_second": 650321909.3451258,
+      "scale": "sub-4M"
+    },
+    {
+      "component": "unicode64",
+      "baseline_seconds": 2.30706e-08,
+      "elapsed_seconds": 2.3582000000000002e-08,
+      "speedup": 0.9783139682808921,
+      "overall_contribution_percent": 0.0,
+      "result": "exact predicate match",
+      "logical_items": 1,
+      "throughput_items_per_second": 42405224.323636666,
+      "scale": "sub-4M"
+    },
+    {
+      "component": "mixed64",
+      "baseline_seconds": 1.33666e-08,
+      "elapsed_seconds": 1.3961600000000001e-08,
+      "speedup": 0.9573831079532431,
+      "overall_contribution_percent": 0.0,
+      "result": "exact predicate match",
+      "logical_items": 1,
+      "throughput_items_per_second": 71625028.65001145,
+      "scale": "sub-4M"
+    },
+    {
+      "component": "ascii1024",
+      "baseline_seconds": 7.233839999999999e-08,
+      "elapsed_seconds": 2.0505e-09,
+      "speedup": 35.278419897585955,
+      "overall_contribution_percent": 0.003940784221976292,
+      "result": "exact predicate match",
+      "logical_items": 1,
+      "throughput_items_per_second": 487685930.260912,
+      "scale": "sub-4M"
+    },
+    {
+      "component": "stress_1MiB",
+      "baseline_seconds": 6.88387534e-05,
+      "elapsed_seconds": 1.5379e-09,
+      "speedup": 44761.527667598675,
+      "overall_contribution_percent": 3.8594496738013486,
+      "result": "exact predicate match",
+      "logical_items": 1,
+      "throughput_items_per_second": 650237336.6278691,
+      "scale": "sub-4M"
+    },
+    {
+      "component": "stress_16MiB",
+      "baseline_seconds": 0.0017145612353,
+      "elapsed_seconds": 2.8567e-09,
+      "speedup": 600189.4617215669,
+      "overall_contribution_percent": 96.12898672522772,
+      "result": "exact predicate match",
+      "logical_items": 1,
+      "throughput_items_per_second": 350054258.41005355,
+      "scale": "sub-4M"
+    }
+  ]
+}

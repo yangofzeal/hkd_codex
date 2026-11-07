@@ -1,0 +1,4 @@
+Synthetic application test fixture, not a user message:
+Run fixture-A executed 12 tests: 10 passed and 2 failed.
+Payment fixture-A has not been verified.
+Please investigate whether a future algorithm could reduce unsupported claims.

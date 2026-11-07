@@ -1,0 +1,86 @@
+{
+  "upstream_commit": "57a808a3920f05f2d4b9eab2d0493e1df136ae6b",
+  "purpose": "Persistent auditable code-template to HKD mapping; not model memory or training.",
+  "blocks": [
+    {
+      "template": "Full Unicode scalar count used only as a threshold predicate",
+      "source": [
+        "codex-rs/skills/src/parser.rs",
+        "codex-rs/skills/src/interface.rs",
+        "codex-rs/skills/src/metadata.rs"
+      ],
+      "mapping": "codex-rs/skills/src/hkd_length_bound.rs",
+      "invariant": "byte_count <= limit => accept; byte_count > 4*limit => reject; otherwise original scalar count",
+      "status": "integrated in source, focused tests pass; complete Codex build unverified",
+      "method": "Exact UTF-8 bounds specialization; not fixed-gap factoring or lossy beam pruning"
+    },
+    {
+      "template": "Independent explicit evidence-file reads",
+      "mapping": "hkd/personal_reliability/hkd_runtime.py -> vendor/hkd_thread_paid.py",
+      "status": "integrated and live tested",
+      "invariant": "ordered sources; max16files; max4workers; 200KB combined; no result caching"
+    },
+    {
+      "package": "hkd_alu",
+      "mapping": "vendor/hkd_alu.py",
+      "status": "used for measured benchmark reporting, not arithmetic acceleration"
+    },
+    {
+      "package": "hkd_multiprocessing",
+      "status": "existing local source identified; not integrated because current tasks do not justify process overhead"
+    },
+    {
+      "package": "hkd_kernel",
+      "status": "inspected local component is RGB visual validation; no equivalent Codex text block identified"
+    },
+    {
+      "package": "hkd_fs",
+      "status": "local paid archive located; not integrated or claimed faster"
+    },
+    {
+      "package": "hkd_checkpoint",
+      "status": "no importable matching package established in inspected Python3.10 environment"
+    },
+    {
+      "package": "hkd_adam",
+      "status": "local paid archive located; no hosted training/optimizer runtime accessible"
+    },
+    {
+      "package": "hkd_optim",
+      "status": "local learning optimizer source located; no equivalent text-harness optimization established"
+    },
+    {
+      "package": "hkd_sql",
+      "status": "local hkd_sqlite_reads has a five-query application allowlist; not compatible with Codex DB without separate validation"
+    }
+  ],
+  "papers": [
+    {
+      "title": "Hilbert–Krylov Tower Decomposition and a Pseudo-Polynomial Complexity Bound for Subset Sum",
+      "url": "https://ijctjournal.org/hilbert-krylov-pseudo-polynomial-complexity/",
+      "applicability": "Reachable-sum width and residue-class pruning; no proven exact mapping to arbitrary Unicode processing or LLM inference. Pruning cannot be substituted for exact validation without a completeness argument."
+    },
+    {
+      "title": "When Bigger Gets Easier: The PFT Search Collapse and the Exactness Frontier of Compressive Sensing",
+      "date": "2026-10-23",
+      "applicability": "Fixed-gap Fermat search and conditional recovery certificates. No fixed-gap factoring step exists in the selected Codex block."
+    }
+  ],
+  "claims_not_established": [
+    "state-of-the-art superiority",
+    "whole Codex 100000x speedup",
+    "ChatGPT model inference acceleration",
+    "hardware cycle superiority",
+    "universal hallucination removal"
+  ],
+  "python_primary": "3.11",
+  "python_legacy_compatibility": "3.4.3",
+  "obfuscation": {
+    "md5": "c98069278cc417b0ae495885616e7b97",
+    "modules": [
+      "hkd_alu.py",
+      "hkd_thread_paid.py"
+    ],
+    "tests": "29 unit tests on 3.4.3 and 3.11.16"
+  }
+}
