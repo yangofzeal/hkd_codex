@@ -1,0 +1,26 @@
+{
+  "recorded_at": "2026-11-07T14:05:20.826179+00:00",
+  "base_commit": "18a3545fc4265ba4f420dea72aaabac2d0b3f673",
+  "python": "3.11.16",
+  "python_unit_tests": {
+    "passed": 38,
+    "failed": 0
+  },
+  "rust_focused_tests": {
+    "passed": 3,
+    "reference_comparisons": 1902
+  },
+  "doctest_failures": 0,
+  "full_codex_build_verified": false,
+  "hosted_model_modified": false,
+  "fresh_inference_speedup_established": false,
+  "source_sha256": {
+    "codex-rs/skills/src/hkd_length_bound.rs": "24a10b7e566e5ef01cbc9300721b2c5b7c03a6f92004351c7947c4d531ad3b42",
+    "hkd/personal_reliability/check.py": "2173b680bd783a716ccfec84b378d6560cc19415fac104ab7d087e136e826636",
+    "hkd/personal_reliability/reuse.py": "b69cbfe7eec0af8f54cbc4a01b55451f8c1e288341c1fca5067c63a5cba8c35c",
+    "hkd/personal_reliability/test_reuse.py": "4a14f2630fc8dd6e0aa2fde34517e14adc407e2061a102c08ec838ec93d66f41",
+    "hkd/reuse_benchmark.py": "5b1aee48a4b9a367663b9928bbeba56b71eee5928c848b891b801f0d0db4effc",
+    "hkd/reuse_benchmark.json": "b3db65f0ffb9d90df9460594d4111cc78e0782c08e939ff2b748fb51058933e1",
+    "hkd/length_benchmark_v2_verified.csv": "81047bdc9c806fcae30f8509577d5213bbeb031b742b5f70322ecd1cd18512bb"
+  }
+}

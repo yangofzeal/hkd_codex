@@ -21,6 +21,7 @@ import tempfile
 import time
 import re
 from hkd_runtime import load_sources
+from reuse import ReviewSession
 
 LIMIT = 200000
 ROOT = Path(__file__).resolve().parent
@@ -207,6 +208,59 @@ def review_with_codex(text, sources, kind, timeout=120):
         }
 
 
+def new_session():
+    identity = digest(INSTRUCTIONS + json.dumps(SCHEMA, sort_keys=True) + 'review-snapshot-v2')
+    return ReviewSession(review_with_codex, validate, identity)
+
+
+def show_report(report, as_json=False):
+    if as_json:
+        print(json.dumps(report, ensure_ascii=False), flush=True)
+        return
+    if report.get('runtime', {}).get('mode') == 'reused_saved_review':
+        print('Saved review reused (not a new model response); age {:.3f}s.'.format(
+            report['runtime']['snapshot_age_seconds']))
+    print(report['annotated'])
+    for i, finding in enumerate(report['findings'], 1):
+        print('\n[{}] Reviewer assessment: {}'.format(i, finding['reason']))
+        if finding['source_id']:
+            print('Evidence ({}): {}'.format(finding['source_id'], finding['evidence_quote']))
+    print('\n' + report['limits'])
+
+
+def session_loop(args):
+    session = new_session()
+    try:
+        if args.clipboard_session:
+            while True:
+                print('Reading copied text; new reviews use your signed-in Codex.', flush=True)
+                text = subprocess.check_output(['/usr/bin/pbpaste']).decode('utf-8')
+                report = session.review(text, load_sources(args.evidence), args.kind)
+                show_report(report, args.json)
+                if input('\nEnter to review clipboard again; q then Enter to quit: ').strip().lower() == 'q':
+                    break
+        else:
+            while True:
+                line = sys.stdin.readline(LIMIT + 1)
+                if not line:
+                    break
+                if len(line.encode('utf-8')) > LIMIT:
+                    raise ValueError('Oversized session request')
+                request = json.loads(line)
+                if not isinstance(request, dict) or set(request) - {'text', 'kind', 'evidence', 'fresh'}:
+                    raise ValueError('Invalid session request')
+                paths = request.get('evidence', [])
+                if not isinstance(paths, list) or not all(isinstance(p, str) for p in paths):
+                    raise ValueError('Evidence must be a list of paths')
+                if type(request.get('fresh', False)) is not bool:
+                    raise ValueError('fresh must be Boolean')
+                report = session.review(request.get('text'), load_sources(paths),
+                                        request.get('kind', 'response'), request.get('fresh', False))
+                show_report(report, True)
+    finally:
+        session.clear()
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__.split('\n')[0])
     parser.add_argument('input', nargs='?', help='UTF-8 text file; omitted means stdin')
@@ -217,10 +271,18 @@ def main(argv=None):
     parser.add_argument('--review-json', help='Validate an existing review without a model call')
     parser.add_argument('--json', action='store_true', help='Print full structured report')
     parser.add_argument('--self-test', action='store_true')
+    modes = parser.add_mutually_exclusive_group()
+    modes.add_argument('--session', action='store_true', help='Process JSONL requests; bounded saved-review reuse')
+    modes.add_argument('--clipboard-session', action='store_true', help='Interactive Mac clipboard reviews; no monitoring')
     args = parser.parse_args(argv)
     if args.self_test:
         return int(bool(doctest.testmod().failed))
     try:
+        if args.session or args.clipboard_session:
+            if args.input or args.codex_jsonl or args.review_json:
+                raise ValueError('Session mode cannot be combined with file/stream/offline review modes')
+            session_loop(args)
+            return 0
         if args.codex_jsonl:
             if args.input:
                 with Path(args.input).open() as stream:

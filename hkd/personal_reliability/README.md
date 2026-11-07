@@ -1,5 +1,21 @@
 # Personal text checker
 
+For explicit process-local review reuse:
+
+```sh
+python3.11 hkd/personal_reliability/check.py --session
+python3.11 hkd/personal_reliability/check.py --clipboard-session --evidence evidence.txt
+```
+
+Session mode accepts one JSON object per line, with `text`, optional `evidence`
+file paths, `kind` and Boolean `fresh`. Clipboard mode reads only when you run it
+and press Enter; it does not monitor your clipboard. Saved reviews expire after
+60 seconds, are bounded to eight entries and 1 MiB, and are erased on exit.
+Identical text/evidence/kind may reuse a revalidated saved assessment, explicitly
+labeled as reused. Set `fresh` to true for a new model call. Reuse does not refresh
+world facts, guarantee truth or accelerate fresh model inference. See
+[`../reuse_benchmark.json`](../reuse_benchmark.json) for measured boundaries.
+
 Review copied ChatGPT text with your signed-in Codex CLI:
 
 ```sh

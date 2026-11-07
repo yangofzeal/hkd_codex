@@ -1,5 +1,41 @@
 # HKD Codex: personal reliability checking and exact local optimization
 
+## November 7 follow-up: measured ARM validation and saved-review reuse
+
+The historical v1 measurements below remain unchanged. The follow-up adds:
+
+- An AArch64 NEON scalar-start counter for the ambiguous UTF-8 interval, with
+  checked vector loads and bounded lane accumulation. Other architectures retain
+  the original scalar-count fallback. Three focused Rust tests (1,902 reference
+  comparisons) pass. Full Codex build/integration remains unverified.
+- A fresh nine-batch measurement in
+  [length_benchmark_v2_verified.csv](hkd/length_benchmark_v2_verified.csv): all 11
+  measured cases improved versus the original upstream predicate. Small cases
+  range from 1.4005x to 25.5598x; the four formerly regressing ambiguous cases
+  measure 1.4451x, 2.9956x, 2.9212x and 1.8817x. Oversized-string stress gains
+  remain predicate-only and do not measure model inference or whole-task gains.
+- Explicit process-local saved-review reuse in `--session` and
+  `--clipboard-session` modes. Exact text, evidence contents, review kind and
+  implementation identity bind each entry. The default is eight entries, 1 MiB
+  total serialized payload and 60-second expiry. Hits are revalidated and labeled
+  `reused_saved_review`, never fresh model output or verified truth. Evidence
+  files are reread. `fresh: true` bypasses reuse. No cache is persisted to disk.
+- [reuse_benchmark.json](hkd/reuse_benchmark.json) records one fresh synthetic
+  review at **10.478488 seconds**, then 31 identical saved-review requests at
+  **0.062333 ms median / 0.145458 ms p95**, including evidence reading and
+  validation. Compared report fields were identical. This is saved-artifact
+  reuse, **not an inference speedup**; interpreter startup and UI time are
+  excluded. A fresh model response remains slow and may be wrong.
+- **38 Python tests pass on Python 3.11.16**, including nine new tests for cache
+  identity, expiry boundaries, clock reversal, explicit refresh, mutation
+  isolation, revalidation, bounded storage and failure handling. The follow-up
+  has not been rerun on Python 3.4.3; the older compatibility receipts apply to v1.
+
+The original `hkd-implementation-v1` tag, complete patch and source manifest
+describe v1 only. Use the follow-up commit diff and its
+[source-bound verification receipt](hkd/followup_verification.json) for these
+changes. No installed Codex binary or hosted ChatGPT model was modified.
+
 This is an independently modified Codex fork, not an OpenAI release or endorsement.
 The requested **100,000× whole-system speedup and elimination of all hallucinations
 have not been achieved**. Actual measurements below include a much faster oversized
