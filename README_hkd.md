@@ -1,5 +1,213 @@
 # HKD Codex: personal reliability checking and exact local optimization
 
+## Compile, test and install this fork
+
+These instructions build this repository's Rust CLI, not the upstream npm or
+Homebrew release. **Only switch your default after the build, tests and executable
+smoke checks below succeed.** The published focused checks pass, but a successful
+full native CLI build/install has not yet been established for this revision.
+
+Two separate components are provided:
+
+| Component | What running it enables |
+| --- | --- |
+| Compiled `codex` executable | Native UTF-8 limit and patch-context matching optimizations |
+| Python `hkd/personal_reliability/check.py` | Explicit evidence review, known-type detection and optional bounded review sessions |
+
+Building the Rust executable does not automatically insert the Python checker
+into every TUI/model response. The registry is a regression inventory, not an
+autonomous discovery model or a universal truth guarantee. CLI installation also
+does not replace the separately distributed Codex desktop application.
+
+### 1. Prerequisites and source checkout
+
+On macOS, install Apple's command-line developer tools if absent:
+
+```sh
+xcode-select --install
+```
+
+You need Git, a C/C++ toolchain, Python 3.11 for the tested reviewer environment,
+and Rust/Cargo. The repository pins Rust **1.95.0** in
+`codex-rs/rust-toolchain.toml`; use rustup for that toolchain. If rustup is absent,
+follow [the upstream source-build prerequisites](docs/install.md). Additional
+workspace developer helpers such as `just`/nextest are documented there; the
+direct Cargo commands below do not require those helpers.
+
+```sh
+git clone --branch hkd/personal-reliability --single-branch https://github.com/yangofzeal/hkd_codex.git
+cd hkd_codex
+export HKD_SOURCE_DIR="$PWD"
+git rev-parse HEAD
+git status --short
+rustup toolchain install 1.95.0 --profile minimal --component rustfmt --component clippy
+python3.11 --version
+df -h .
+```
+
+For an existing checkout, use it rather than cloning over it. Inspect local
+changes before `git pull --ff-only`; do not discard unrelated work. Record the
+commit you build. Dependency downloads and Rust artifacts need additional disk
+space beyond the checkout. This Mac had only about 16 GiB available at preflight;
+the local build attempt stops if free space falls below 4 GiB. This is a disk
+guard, not an established minimum build-space estimate.
+
+### 2. Run the deterministic reviewer and focused native tests
+
+From the repository root:
+
+```sh
+python3.11 -m unittest discover -s hkd/personal_reliability -q
+python3.11 -m unittest discover -s hkd -p 'test_monitor_known_types.py' -q
+python3.11 hkd/personal_reliability/check.py --self-test
+python3.11 -m doctest hkd/personal_reliability/known_types.py hkd/personal_reliability/hkd_runtime.py hkd/vendor/hkd_alu.py
+python3.11 hkd/monitor_known_types.py --output /tmp/hkd-known-type-monitor.json
+rustup run 1.95.0 rustc --edition=2024 --test codex-rs/skills/src/hkd_length_bound.rs -o /tmp/hkd-length-tests
+/tmp/hkd-length-tests
+rustup run 1.95.0 rustc --edition=2024 --test hkd/diff_benchmark.rs -o /tmp/hkd-diff-tests
+/tmp/hkd-diff-tests
+```
+
+The existing measured standalone Rust receipts used Homebrew rustc 1.98.1; the
+commands above use the repository-pinned toolchain for a new build. The Python
+monitor consumes no model calls. In the published registered scope, expect 16/16
+categories and zero failing regressions. Focused tests are not a substitute for
+the full crate tests below.
+
+### 3. Compile the native CLI and run full affected-crate tests
+
+```sh
+cd "$HKD_SOURCE_DIR/codex-rs"
+export HKD_BUILD_REV="$(git rev-parse HEAD)"
+export CARGO_TARGET_DIR="$HOME/.cache/hkd-codex-target"
+export CARGO_INCREMENTAL=0
+export CARGO_PROFILE_RELEASE_DEBUG=0
+export CARGO_PROFILE_RELEASE_LTO=false
+rustup run 1.95.0 cargo build --locked --release -p codex-cli --bin codex --jobs 2
+rustup run 1.95.0 cargo test --locked --release -p codex-skills -p codex-apply-patch -p codex-cli --lib --jobs 2
+"$CARGO_TARGET_DIR/release/codex" --version
+"$CARGO_TARGET_DIR/release/codex" --help
+```
+
+Two jobs, no incremental cache, no debug information and no LTO reduce build
+resource pressure. These are explicit local build settings, not a performance
+claim. Keep the lockfile; do not substitute a different V8 revision or remove
+dependencies merely to make compilation appear successful. Avoid `--all-features`
+for this routine build. The pinned `rusty_v8` dependency recursively fetches
+Chromium submodules. An offline build fails if those caches are incomplete;
+network access to the pinned dependency hosts is required on first build.
+
+If a dependency fetch/build/test fails, stop here. Save the error and resolve it
+before installation; a passing isolated predicate test does not imply a usable
+Codex executable. Do not point your default command at a nonexistent binary.
+
+### 4. Install a versioned local copy after all checks pass
+
+Return to the repository root. This leaves a package-managed Codex installation
+intact and stores the fork separately. Use a new revision directory for upgrades.
+
+```sh
+cd "$HKD_SOURCE_DIR"
+export HKD_REV="$HKD_BUILD_REV"
+export HKD_RELEASE="$HOME/.local/opt/hkd-codex/$HKD_REV"
+test -x "$CARGO_TARGET_DIR/release/codex"
+test ! -e "$HKD_RELEASE"
+test ! -L "$HKD_RELEASE"
+mkdir -p "$HKD_RELEASE/bin"
+install -m 755 "$CARGO_TARGET_DIR/release/codex" "$HKD_RELEASE/bin/codex"
+git archive "$HKD_REV" hkd | tar -x -C "$HKD_RELEASE"
+printf '%s\n' "$HKD_REV" > "$HKD_RELEASE/SOURCE_COMMIT"
+"$HKD_RELEASE/bin/codex" --version
+"$HKD_RELEASE/bin/codex" --help
+```
+
+Run the commands individually and stop on any failure. A previously built binary
+must match the recorded source revision; do not install an old binary under a new
+source identifier. `git archive` installs only committed HKD files, excluding
+private/untracked workspace files. Retain the build log and artifact SHA-256
+(`shasum -a 256 "$HKD_RELEASE/bin/codex"` on macOS) alongside your build receipt.
+
+### 5. Make the tested CLI your default in a new terminal
+
+Record your current command before changing PATH. If `~/.local/bin/codex` already
+exists, preserve it first; do not overwrite a previous backup.
+
+```sh
+command -v codex
+mkdir -p "$HOME/.local/bin"
+if [ -e "$HOME/.local/bin/codex" ] || [ -L "$HOME/.local/bin/codex" ]; then
+  test ! -e "$HOME/.local/bin/codex.before-hkd-$HKD_REV" &&
+    test ! -L "$HOME/.local/bin/codex.before-hkd-$HKD_REV" &&
+    mv "$HOME/.local/bin/codex" "$HOME/.local/bin/codex.before-hkd-$HKD_REV"
+fi
+ln -s "$HKD_RELEASE/bin/codex" "$HOME/.local/bin/codex"
+export PATH="$HOME/.local/bin:$PATH"
+rehash
+type -a codex
+codex --version
+```
+
+Add the following line **once** to `~/.zshrc` for future interactive zsh terminals:
+
+```sh
+export PATH="$HOME/.local/bin:$PATH"
+```
+
+If `type -a codex` shows an alias/function before the new path, inspect and remove
+that conflicting definition before relying on the default. For other shells use
+their corresponding startup file and command-cache refresh.
+
+Finish any active work, exit the old terminal Codex session with Ctrl+D at an
+empty prompt, and open a new terminal. Confirm `command -v codex` resolves to
+`~/.local/bin/codex`, then run `codex` in your project directory. Existing account
+authentication may be reused; if login is requested, use `codex login`. Do not
+copy credentials into this repository. Closing/reopening the desktop app does
+not cause it to use this shell PATH override.
+
+### 6. Use the known-error checker explicitly
+
+The checker does not run automatically just because native `codex` is your default.
+Use an evidence-backed review when desired:
+
+```sh
+export HKD_RELEASE="$(dirname "$(dirname "$(readlink "$HOME/.local/bin/codex")")")"
+test -f "$HKD_RELEASE/SOURCE_COMMIT"
+python3.11 "$HKD_RELEASE/hkd/personal_reliability/check.py" response.txt --evidence evidence.txt
+python3.11 "$HKD_RELEASE/hkd/personal_reliability/check.py" --session
+python3.11 "$HKD_RELEASE/hkd/monitor_known_types.py" --output /tmp/hkd-installed-contracts.json
+```
+
+Session mode accepts one JSON object per line containing `text`, optional
+`evidence` paths, `kind` and Boolean `fresh`. Recognized test-failure contradictions
+use the deterministic path; other input may call your signed-in Codex and consume
+account usage. Saved reviews are labeled separately. Review source pairing and
+the registry's exact scope; new types require explicit registration and tests.
+
+### 7. Roll back the shell default
+
+Use the revision you installed. Remove the default link **only after confirming
+its target is your HKD release**; keep the versioned release for inspection.
+
+```sh
+readlink "$HOME/.local/bin/codex"
+export HKD_REV="$(cat "$HKD_RELEASE/SOURCE_COMMIT")"
+if [ "$(readlink "$HOME/.local/bin/codex")" = "$HKD_RELEASE/bin/codex" ]; then
+  unlink "$HOME/.local/bin/codex"
+  if [ -e "$HOME/.local/bin/codex.before-hkd-$HKD_REV" ] || [ -L "$HOME/.local/bin/codex.before-hkd-$HKD_REV" ]; then
+    mv "$HOME/.local/bin/codex.before-hkd-$HKD_REV" "$HOME/.local/bin/codex"
+  fi
+else
+  printf '%s\n' 'Default link does not match this HKD release; no change made.' >&2
+fi
+rehash
+type -a codex
+codex --version
+```
+
+If no prior local command existed, omit the `mv`; your existing package-managed
+command farther down PATH becomes active again. No account files, conversations,
+permissions, compaction settings or desktop binaries need to be deleted.
+
 ## Known error types: 16 registered contracts, zero failing regressions
 
 The acceptance target is now explicitly the error types found and registered,

@@ -1,3 +1,6 @@
+> **HKD fork:** See [full compilation, tests, installation, default-launch and rollback instructions](README_hkd.md#compile-test-and-install-this-fork).
+> The upstream package-manager installers below install OpenAI's release, not this modified fork.
+
 <p align="center"><strong>Codex CLI</strong> is a coding agent from OpenAI that runs locally on your computer.
 <p align="center">
   <img src="https://github.com/openai/codex/blob/main/.github/codex-cli-splash.png" alt="Codex CLI splash" width="80%" />
