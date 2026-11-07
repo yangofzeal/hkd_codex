@@ -95,6 +95,8 @@ def validate(text, sources, review):
             source = sources.get(f['source_id'])
             if source is None or not f['evidence_quote'].strip() or f['evidence_quote'] not in source:
                 raise ValueError('Missing source or fabricated evidence quote')
+            if f['evidence_quote'].strip() == f['claim'].strip():
+                raise ValueError('An identical quote alone does not establish contradiction')
         elif f['source_id'] or f['evidence_quote']:
             raise ValueError('Unverified claims must not imply verified citations')
         rows.append(dict(f, start=start, end=end))
@@ -111,6 +113,9 @@ def validate(text, sources, review):
         'status': 'needs_review' if rows else 'no_issues_flagged',
         'original_sha256': digest(text), 'original': text, 'annotated': annotated,
         'findings': rows,
+        'truth_certified': False,
+        'semantic_completeness_verified': False,
+        'verification_scope': 'claim-span and quote integrity only',
         'source_sha256': {k: digest(v) for k, v in sources.items()},
         'limits': 'Model-assisted review, not proof of truth or exhaustive detection. '
                   'Quote matching verifies provenance, not semantic entailment. '

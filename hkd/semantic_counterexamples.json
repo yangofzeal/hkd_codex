@@ -1,0 +1,21 @@
+{
+  "baseline_commit": "442a2d44657a7f7a019cfadf9504925fb2d63074",
+  "identical_quote": {
+    "text": "All tests passed.",
+    "source": "All tests passed.",
+    "model_verdict": "contradicted",
+    "model_reason": "Two tests failed.",
+    "observed_before": "accepted and annotated as contradicted",
+    "after": "rejected: identical quote alone is insufficient contradiction evidence"
+  },
+  "omission": {
+    "text": "All tests passed.",
+    "source": "Two tests failed.",
+    "model_findings": [],
+    "status": "no_issues_flagged",
+    "semantic_detection_fixed": false,
+    "mitigation": "Machine-readable truth_certified and semantic_completeness_verified remain false"
+  },
+  "method": "Deterministic validator counterexamples with supplied model-output fixtures; not newly observed live model failures",
+  "scope": "No universal semantic guarantee; unrelated quotes and unsupported model reasons remain possible"
+}
