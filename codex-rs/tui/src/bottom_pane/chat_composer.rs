@@ -16,6 +16,8 @@
 //! loss cancels the pending paste; a late clipboard result cannot overwrite newer input.
 //! The live voice strip renders after effort ignition, followed by the Astra sparkle when eligible.
 //! Owned transcripts keep persistent status below the composer and hints on a separate final row.
+//! The activity label uses the current status and reported plan-step counts;
+//! absent counts display unknown progress rather than an estimated percentage.
 //! Shortcut help expands above the composer, with its close hint replacing the final shortcuts row
 //! so input and persistent status stay anchored when help opens or closes.
 //! Escape dismisses visible shortcut help before editing, transcript backtracking, or interruption.
@@ -403,6 +405,8 @@ mod agents_navigation;
 mod attachment_state;
 mod completion_target;
 mod composer_layout;
+#[path = "chat_composer/processing_indicator.rs"]
+mod processing_indicator;
 mod draft_state;
 mod footer_state;
 mod history_search;
@@ -651,6 +655,8 @@ pub(crate) struct ChatComposer {
     placeholder_text: String,
     blocks_direct_input: bool,
     is_task_running: bool,
+    activity_task: String,
+    activity_progress: Option<(usize, usize)>,
     queue_submissions: bool,
     /// Slash-command draft staged for local recall after application-level dispatch.
     ///
@@ -840,6 +846,8 @@ impl ChatComposer {
             placeholder_text,
             blocks_direct_input: false,
             is_task_running: false,
+            activity_task: String::from("request"),
+            activity_progress: None,
             queue_submissions: false,
             pending_slash_command_history: None,
             skills: None,
@@ -4410,7 +4418,19 @@ impl ChatComposer {
     }
 
     pub fn set_task_running(&mut self, running: bool) {
+        if running != self.is_task_running {
+            self.activity_task = String::from("request");
+            self.activity_progress = None;
+        }
         self.is_task_running = running;
+    }
+
+    pub(crate) fn set_activity_task(&mut self, task: &str) {
+        self.activity_task = task.chars().filter(|c| !c.is_control()).take(48).collect();
+    }
+
+    pub(crate) fn set_activity_progress(&mut self, progress: Option<(usize, usize)>) {
+        self.activity_progress = progress.filter(|(done, total)| *total > 0 && done <= total);
     }
 
     pub(crate) fn set_queue_submissions(&mut self, queue_submissions: bool) {
@@ -5007,6 +5027,14 @@ impl ChatComposer {
             buf.set_style(composer_rect, crate::style::quiet_workspace_style());
         } else if options.footer.is_some_and(|footer| footer.is_interactive) {
             buf.set_style(composer_rect, Style::default().dim());
+        }
+        // Keep the blue lamp below input. The status row owns the Working label.
+        let background_running = crate::background_activity::active();
+        processing_indicator::render_lamp(composer_rect, self.is_task_running || background_running, buf);
+        if crate::background_activity::monitored()
+            && let Some(requester) = &self.frame_requester
+        {
+            requester.schedule_frame_in(std::time::Duration::from_secs(2));
         }
     }
 }

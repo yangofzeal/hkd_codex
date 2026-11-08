@@ -116,8 +116,8 @@ impl ProgramStatus {
 
     fn iterm_indicator(self) -> &'static str {
         match self {
-            Self::Idle | Self::Done | Self::Error => "#00d75f",
-            Self::Working => "#ff9500",
+            Self::Idle | Self::Done | Self::Error => "#5f87ff",
+            Self::Working => "#5f87ff",
             Self::Blocked(_) => "#5f87ff",
         }
     }
@@ -140,6 +140,14 @@ pub(crate) fn set_terminal_program_status(
     if cfg!(test) {
         return Ok(());
     }
+
+    let background_running = crate::background_activity::active();
+    let status = if matches!(status, ProgramStatus::Idle | ProgramStatus::Done) && background_running {
+        ProgramStatus::Working
+    } else { status };
+    let detail = if background_running && matches!(status, ProgramStatus::Working) && detail.is_none() {
+        Some("Authorized background task")
+    } else { detail };
 
     let support = current_terminal_program_status_support();
     if !support.osc_7501 {

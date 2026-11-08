@@ -2641,3 +2641,5 @@ pub(crate) mod tests;
 pub(crate) use tests::test_backend;
 #[cfg(test)]
 pub(crate) use tests::test_support;
+
+mod background_activity;
