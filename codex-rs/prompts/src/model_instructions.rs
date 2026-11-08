@@ -1,4 +1,4 @@
-//! Returns literal model instructions from the captured model metadata.
+//! Adds local task-continuity instructions to captured model instructions.
 //! Missing templates produce a warning; supplied empty templates remain valid input.
 
 use crate::ResolvedModelMessages;
@@ -13,7 +13,7 @@ pub fn render_model_instructions(model_info: &ModelInfo) -> String {
             "Model has no instruction template; returning empty instructions."
         );
     }
-    template.unwrap_or_default().to_owned()
+    crate::task_continuity::append_task_continuity(template.unwrap_or_default())
 }
 
 #[cfg(test)]

@@ -1,6 +1,7 @@
 mod compact;
 mod guardian_instructions;
 mod model_instructions;
+mod task_continuity;
 mod model_messages;
 mod multi_agent_instructions;
 mod permissions_instructions;

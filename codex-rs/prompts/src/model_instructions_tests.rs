@@ -71,7 +71,10 @@ fn renders_literal_templates() {
             ResolvedModelMessages::from_model(&model).instructions_template(),
             render_model_instructions(&model)
         ),
-        (Some(template), template.to_string()),
+        (
+            Some(template),
+            crate::task_continuity::append_task_continuity(template)
+        ),
     );
 }
 
