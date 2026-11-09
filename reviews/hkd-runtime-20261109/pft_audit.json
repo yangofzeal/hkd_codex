@@ -1,0 +1,61 @@
+{
+  "sha256": "73e842b803ae85f21ba4a9e693d87b1b65ef46fe36c2fd95669c06bf9b670769",
+  "doctests": [
+    {
+      "module": "pft_audit",
+      "attempted": 7,
+      "failed": 0
+    },
+    {
+      "module": "_hkd_carnets_sweep",
+      "attempted": 4,
+      "failed": 0
+    },
+    {
+      "module": "hkd_persist",
+      "attempted": 2,
+      "failed": 0
+    }
+  ],
+  "cases": [
+    {
+      "N": 13837,
+      "budget_trial": 3,
+      "budget_fermat": 2,
+      "result": [
+        101,
+        137
+      ],
+      "product_verified": true,
+      "status": "factors_found"
+    },
+    {
+      "N": 100140049,
+      "budget_trial": 3,
+      "budget_fermat": 2,
+      "result": [
+        10007,
+        10007
+      ],
+      "product_verified": true,
+      "status": "factors_found"
+    },
+    {
+      "N": 10097063,
+      "budget_trial": 3,
+      "budget_fermat": 2,
+      "result": null,
+      "product_verified": false,
+      "status": "inconclusive"
+    },
+    {
+      "N": 101,
+      "budget_trial": 3,
+      "budget_fermat": 2,
+      "result": null,
+      "product_verified": false,
+      "status": "inconclusive"
+    }
+  ],
+  "conclusion": "Bounded exact factor search can return inconclusive. Sampling path reduces visited entries and does not receive N. No general polynomial-time NP decision procedure or P=NP proof established."
+}

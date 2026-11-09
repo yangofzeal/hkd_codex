@@ -1,0 +1,63 @@
+{
+  "scope": "Local deterministic Python transitions handler: accept, async collection, integer-square reply and in-memory sink; excludes Codex/ChatGPT inference, networking and durable I/O. Progress comparison is full scan versus maintained exact index.",
+  "rows": [
+    {
+      "retained_events": 0,
+      "local_end_to_end_median_us": 119.083,
+      "local_ack_median_us": 42.25,
+      "ack_max_us": 143.625,
+      "ack_target_violations": 0,
+      "progress_scan_median_ns": 5292,
+      "progress_index_median_ns": 541,
+      "progress_speedup": 9.7818853974122,
+      "outputs_equal": true
+    },
+    {
+      "retained_events": 16,
+      "local_end_to_end_median_us": 110.75,
+      "local_ack_median_us": 39.791,
+      "ack_max_us": 104.833,
+      "ack_target_violations": 0,
+      "progress_scan_median_ns": 7083,
+      "progress_index_median_ns": 542,
+      "progress_speedup": 13.068265682656827,
+      "outputs_equal": true
+    },
+    {
+      "retained_events": 128,
+      "local_end_to_end_median_us": 83.875,
+      "local_ack_median_us": 30.333,
+      "ack_max_us": 31.875,
+      "ack_target_violations": 0,
+      "progress_scan_median_ns": 24875,
+      "progress_index_median_ns": 500,
+      "progress_speedup": 49.75,
+      "outputs_equal": true
+    },
+    {
+      "retained_events": 1024,
+      "local_end_to_end_median_us": 102.5,
+      "local_ack_median_us": 37.0,
+      "ack_max_us": 44.459,
+      "ack_target_violations": 0,
+      "progress_scan_median_ns": 211000,
+      "progress_index_median_ns": 792,
+      "progress_speedup": 266.4141414141414,
+      "outputs_equal": true
+    },
+    {
+      "retained_events": 4096,
+      "local_end_to_end_median_us": 79.5,
+      "local_ack_median_us": 28.5,
+      "ack_max_us": 118.959,
+      "ack_target_violations": 0,
+      "progress_scan_median_ns": 809084,
+      "progress_index_median_ns": 1084,
+      "progress_speedup": 746.3874538745388,
+      "outputs_equal": true
+    }
+  ],
+  "samples_per_history": 31,
+  "end_to_end_latency_strictly_decreases": false,
+  "universal_1ms_guarantee": false
+}

@@ -1,0 +1,33 @@
+{
+  "scope": "Supplied reference solver, contradictory small CNFs. Establishes observed exhaustive candidate growth for this implementation, not P versus NP in general.",
+  "rows": [
+    {
+      "variables": 4,
+      "status": "UNSAT",
+      "candidates": 16,
+      "seconds": 8.879101369529963e-05
+    },
+    {
+      "variables": 8,
+      "status": "UNSAT",
+      "candidates": 256,
+      "seconds": 0.0004019170009996742
+    },
+    {
+      "variables": 12,
+      "status": "UNSAT",
+      "candidates": 4096,
+      "seconds": 0.00628274999326095
+    },
+    {
+      "variables": 16,
+      "status": "UNSAT",
+      "candidates": 65536,
+      "seconds": 0.08516287500970066
+    }
+  ],
+  "bounded_result": {
+    "status": "UNKNOWN",
+    "candidates": 100
+  }
+}
