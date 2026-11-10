@@ -1,0 +1,13 @@
+--- a/codex-rs/tui/src/runtime_widgets.rs
++++ b/codex-rs/tui/src/runtime_widgets.rs
+@@ -38,2 +38,10 @@
+ pub(crate) fn widgets_path() -> Option<PathBuf> {
++    // Reuse project-owned declarative progress across session resets.
++    if let Some(path) = std::env::var_os("CODEX_PROJECT_PROGRESS_PATH") {
++        let path = PathBuf::from(path);
++        if path.is_absolute() {
++            return Some(path);
++        }
++    }
++
+     scoped_widgets_path(config_home()?, &std::env::var("CODEX_TASK_NODE").ok()?)
