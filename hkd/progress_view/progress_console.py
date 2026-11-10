@@ -31,6 +31,8 @@ def main():
                 ])
                 if result.returncode:
                     lines.append('Refresh failed; retaining saved evidence.')
+                for question in state.get('pending_questions', []):
+                    lines.append('PENDING QUESTION [' + question['dependent_task'] + ']: ' + question['text'])
                 display = '\n'.join(lines)
                 if display != previous:
                     print(('\033[2J\033[H' if sys.stdout.isatty() else '') + display, flush=True)

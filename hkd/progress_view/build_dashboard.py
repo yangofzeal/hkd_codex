@@ -15,6 +15,12 @@ fingerprint['renderer_sha256'] = hashlib.sha256(Path(__file__).read_bytes()).hex
 extra_path = ROOT / 'additional-tasks.json'
 extra_raw = extra_path.read_text() if extra_path.exists() else '[]'
 fingerprint['additional_tasks_sha256'] = hashlib.sha256(extra_raw.encode()).hexdigest()
+questions_path = ROOT / 'pending-questions.json'
+questions_raw = questions_path.read_text() if questions_path.exists() else '[]'
+fingerprint['questions_sha256'] = hashlib.sha256(questions_raw.encode()).hexdigest()
+questions = json.loads(questions_raw)
+if not isinstance(questions, list) or any(not isinstance(q, dict) or not all(isinstance(q.get(k), str) for k in ('id', 'text', 'status', 'dependent_task')) for q in questions):
+    raise SystemExit('Invalid pending questions; existing dashboard preserved.')
 cache = ROOT / 'input-cache.json'
 try:
     if json.loads(cache.read_text()) == fingerprint and all((ROOT / p).exists() for p in ('status.json', 'index.html', 'widgets.json')):
@@ -68,6 +74,7 @@ for task in extra_tasks:
     if not isinstance(task.get('percent'), (int, float)) or not 0 <= task['percent'] <= 100:
         raise SystemExit('Invalid additional task percentage; existing dashboard preserved.')
 state['tasks'].extend(extra_tasks)
+state['pending_questions'] = [q for q in questions if q['status'] == 'pending']
 if len({t['name'] for t in state['tasks']}) != len(state['tasks']) or len(state['tasks']) > 8:
     raise SystemExit('Duplicate or excessive tasks; existing dashboard preserved.')
 widgets = {'version': 1, 'placement': 'above', 'widgets': [
@@ -94,6 +101,11 @@ progress{width:100%;height:22px;accent-color:#8ee8b7}progress::-webkit-progress-
 h3{font-size:13px;color:#8ee8b7;letter-spacing:.05em;margin-top:20px}p{line-height:1.5}footer{color:#b9c8c2;font-size:13px}@media(max-width:600px){body{padding:16px}.heading{display:block}}</style>
 <h1>Project Progress</h1><p class="note">Saved evidence · Not a live worker connection<br>Observation: ''' + html.escape(observed) + '''</p>'''
 page += '<main style="position:sticky;top:0;background:#10191a;padding:1px 0">' + ''.join(cards) + '</main>'
+if state['pending_questions']:
+    page += '<aside style="position:sticky;bottom:0;background:#253732;border:1px solid #8ee8b7;padding:16px;border-radius:12px"><h2>Pending questions</h2>'
+    for question in state['pending_questions']:
+        page += '<p><strong style="font-size:16px">' + html.escape(question['dependent_task']) + '</strong>: ' + html.escape(question['text']) + '</p>'
+    page += '<small>These questions remain pending while independent work continues. Reply in Codex.</small></aside>'
 page += '<footer>One bar per task. Percentages are saved estimates, not measured overall completion. This page reloads every 30 seconds; values change only when newly imported evidence is processed. Whole-pipeline speed and exactness gains remain unverified.</footer></html>'
 for name, content in [('status.json', json.dumps(state, indent=2)), ('index.html', page), ('widgets.json', json.dumps(widgets, indent=2)), ('input-cache.json', json.dumps(fingerprint, sort_keys=True))]:
     target = ROOT / name

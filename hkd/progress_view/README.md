@@ -39,3 +39,9 @@ The user requested a 0.5-second local continuation check. No such job-restart da
 ## Validation and limitations
 
 Run `python3 -m unittest discover -s hkd/progress_view -p 'test_*.py'`. Route tests cover allowed snapshot paths, rejected arbitrary/traversal paths, and missing files. A listening socket could not be opened inside the agent sandbox; normal-terminal startup and browser appearance remain to be verified. Only loopback access is configured. WAN publication requires a separately authenticated deployment and regional checks.
+
+## Pending questions
+
+Optional `pending-questions.json` in the data directory stores objects with string fields `id`, `text`, `status`, and `dependent_task`. Only `status: pending` is displayed. Questions remain in a sticky panel and in the terminal output until explicitly answered or withdrawn. Reply in Codex; this read-only viewer does not submit answers. Invalid input preserves the prior snapshot. No questions are synthesized by the renderer.
+
+The accompanying task-continuity source mirrors the local fork and records minimal-question and asynchronous-question behavior. This source is not a compiled or activated release, and linking into this GitHub branch must be checked during native integration.
